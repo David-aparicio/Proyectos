@@ -2,7 +2,6 @@ package com.decroly.daw;
 
 import java.util.Scanner;
 
-import javax.annotation.processing.SupportedSourceVersion;
 
 public class Actividad1 {
 
@@ -129,10 +128,55 @@ public class Actividad1 {
 	 
 	 reader = new Scanner(System.in);
 	 System.out.println("Escriba el primer numero");
-	 double 
+	 double prim1 = reader.nextDouble();
+	 
+	 System.out.println("Escriba un numero que no sea 0");
+	 double seg2 = reader.nextDouble();
+	 
+	 boolean cerito = seg2 == 0;
+	 
+	 System.out.println(cerito + " Pusiste 0");
+	 System.out.println("EL valor de la suma es " + (prim1 + seg2));
+	 System.out.println("El valor de la resta es " + (prim1 - seg2));
+	 System.out.println("El valor del producto " + (prim1 % seg2));
+	 System.out.println("El valor de la division " + (prim1 / seg2));
+	 
+	 // Ejercicio 12
+	 
+	 reader = new Scanner(System.in);
+	 System.out.println("Escriba el primer numero");
+	 double prim2 = reader.nextDouble();
+	 
+	 System.out.println("Escriba un numero ");
+	 double seg3 = reader.nextDouble();
 	
-	
-	
+
+	 double mayores = Math.max(prim2, seg3);
+
+	 System.out.println("El numero mayor es: " + mayores);
+
+	 
+
+	 // Ejercicio 13
+
+
+	 reader= new Scanner(System.in);
+
+	 System.out.println("Escribe un numero: ");
+
+	 double q = reader.nextDouble();
+
+	 
+
+	 boolean positivo = (q >= 0);
+
+	 boolean negativo = (q <= 0);
+
+	 
+
+	 System.out.println(positivo + " El numero es positivo");
+
+	 System.out.println(negativo + " El numero es negativo");
 	
 	
 	
