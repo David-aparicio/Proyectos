@@ -7,8 +7,23 @@ public class Actividad3 {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		//Ejercicio 1
+		Scanner reader = new Scanner(System.in);
 		
+		//Ejercicio 1
+		int b500 = 0;
+		int b200 = 0;
+		int b100 = 0;
+		int b50 = 0;
+		int b20 = 0;
+		int b10 = 0;
+		int b5 = 0;
+		
+		System.out.println("Introduzca la cantidad de dinero: ");
+		int dinero = reader.nextInt();
+		
+		if{
+			
+		}
 		
 		
 		
@@ -28,7 +43,6 @@ public class Actividad3 {
 		
 		
 		//Ejercicio 2
-		Scanner reader = new Scanner(System.in);
 		String opcion = "";
 		double num1 = 0;
 		double num2 = 0;
@@ -75,7 +89,11 @@ public class Actividad3 {
 					num1 = reader.nextDouble();
 					System.out.println("Introduce el segundo número");
 					num2 = reader.nextDouble();
-					System.out.println("El resultado es "+ (num1 / num2));
+					if(num2 == 0) {
+						System.out.println("El número no es valido");
+					}else {
+						System.out.println("El resultado es "+ (num1 / num2));;
+					}
 					break;
 					
 				case "5":
