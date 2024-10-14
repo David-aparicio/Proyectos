@@ -20,27 +20,57 @@ public class Actividad3 {
 		
 		System.out.println("Introduzca la cantidad de dinero: ");
 		int dinero = reader.nextInt();
+		int resto = dinero;
 		
-		if{
-			
+		if (dinero  %5 != 0) {
+			System.out.println("El dinero tiene que ser multiplo de 5");
 		}
 		
+		if (dinero >= 500) {
+			b500 = resto / 500;
+			 resto= resto % 500;
+		}
+
+		if (resto >= 200) {
+			b200 = resto / 200;
+			resto= resto % 200;
+		}
+
+		if (resto >= 100) {
+			b100 = resto / 100;
+			resto= resto % 100;
+		}
+
+		if (resto >= 50) {
+			b50 = resto / 50;
+			resto= resto % 50;
+		}
+
+		if (resto >= 20) {
+			b20 = resto / 20;
+			resto= resto % 20;
+		}
+
+		if (resto >= 10) {
+			b10 = resto / 10;
+			resto= resto % 10;
+		}
+
+		if (resto >= 5) {
+			b5 = resto / 5;
+			resto= resto % 5;
+
+		}
+		System.out.println("Se necesitan "+ b500+ " billetes de 500");
+		System.out.println("Se necesitan "+ b200+ " billetes de 200");
+		System.out.println("Se necesitan "+ b100+ " billetes de 100");
+		System.out.println("Se necesitan "+ b50+ " billetes de 50");
+		System.out.println("Se necesitan "+ b20+ " billetes de 20");
+		System.out.println("Se necesitan "+ b10+ " billetes de 10");
+		System.out.println("Se necesitan "+ b5+ " billetes de 5");
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	
+	
 		
 		//Ejercicio 2
 		String opcion = "";
