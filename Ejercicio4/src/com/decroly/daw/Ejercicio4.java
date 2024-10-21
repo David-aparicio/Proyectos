@@ -73,18 +73,67 @@ public class Ejercicio4 {
 //		System.out.println("La suma de los negativos es: " + negativos);
 //		
 		//Ejercicio5
+//		sc = new Scanner(System.in);
+//		
+//		double [] numeros5 = new double [20];
+//		
+//		double suma = 0;
+//		double media = 0; 
+//		
+//		System.out.println("Introduce 20 números");
+//		
+//		for ( int i = 0; i< numeros5.length; i++) {
+//			numeros5[i] = sc.nextInt();
+//			suma = suma + numeros5[i];
+//			media = suma / 20;
+//		}
+//		System.out.println("La media es: "+ media);
+		
+		//Ejercicio6
+//		sc = new Scanner(System.in);
+//
+//		int N = 0;
+//		int M = 0;
+//
+//
+//		System.out.println("Escriba el número N");		
+//		N = sc.nextInt();
+//
+//		System.out.println("Escriba el número M");		
+//		M = sc.nextInt();
+
+//		double[] numeros6 = new double[N];
+//		
+//		for (int i = 0; i < N; i++){
+//		
+//			numeros6[i] = M;		
+
+//			System.out.println("Los números son: " + numeros6[i]);
+
+//		}
+		//Ejercicio7
 		sc = new Scanner(System.in);
 		
-		double [] numeros5 = new double [20];
+		int P = 0;
+		int Q = 0; 
+		int array = 0;
 		
+		System.out.println("Escriba el número P");
+		P = sc.nextInt();
 		
+		System.out.println("Escriba el número Q");
+		Q = sc.nextInt();
 		
-		
-		
-		
-		
-		
-		
+		if(P > Q) 
+		{
+			System.out.println("El valor P tiene que ser mayor que Q");
+		}else 
+			{	
+				array = Q - P;
+				double [] numeros7 = new double[array];
+				
+			}
+			
 		
 		
 		
