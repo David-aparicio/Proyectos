@@ -242,7 +242,7 @@ public class Ejercicio4 {
 //		
 //		System.out.println("Los numeros son: " + primero +" "+ alreves);
 		//Ejercicio12
-		sc = new Scanner(System.in);
+/*		sc = new Scanner(System.in);
 		int [] numeros12 = new int [10];
 		
 		String opcion = "";
@@ -270,87 +270,61 @@ public class Ejercicio4 {
 				System.out.println("Introduce su posición: ");
 				int P = sc.nextInt();
 				
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			}
-		
-		
-		
-		
-		
+				if (P >= 0 && P < numeros12.length) {
+					numeros12[P] = V;
+					System.out.println("El valor- " + V + " se añadió en la posicion- " + P);   
+				 } else {
+					 System.out.println("Posicion invalida, tiene que estar entre 0 y 9");
+				 }
+				 break;
+				 
+				 case "c":
+				 System.out.println("Saliendo del programa");
+				 break;
+				 
+				 default:
+				 System.out.println("Introduce una opcion correcta del menu");
+			 }
 		
 		
 	}while(!opcion.equals("c)"));
+		 */
+		//Ejercicio 13
+/*		System.out.println("Introduce el valor inicial:");
+		int V = sc.nextInt();
 		
+		System.out.println("Introduce lo que incrementa: ");
+		int Incremento = sc.nextInt();
 		
+		System.out.println("Introduce la cantidad de valores: ");
+		int valores = sc.nextInt();		
 		
+		int secuencia[] = new int[valores];
+		for(int i = 0; i < secuencia.length; i++){
+			secuencia[i] = V + i * Incremento;
+		}
 		
+		System.out.println("La secuencia aritmetica es: ");
+        for (int num : secuencia){
+            System.out.println( num + " ");
+        }
+*/		
+		//Ejercicio 14 
+		int [] numeros = new int [55];
+	     		
+		int repeticiones = 0;
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+        for (int i = 1; i <= 10; i++) {
+        	 for (int j = 0; j < i; j++) {
+                numeros[repeticiones] = i;
+                repeticiones++;
+        	 }   
+        	 
+        }
+        System.out.print("La secuencia generada es: ");
+        for (int i : numeros) {
+            System.out.print(i + " ");
+        }
 		
 		
 	}//public static void
