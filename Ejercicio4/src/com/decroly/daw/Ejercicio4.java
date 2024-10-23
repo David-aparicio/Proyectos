@@ -1,5 +1,6 @@
 package com.decroly.daw;
 
+import java.io.Reader;
 import java.util.Scanner;
 
 public class Ejercicio4 {
@@ -112,28 +113,238 @@ public class Ejercicio4 {
 
 //		}
 		//Ejercicio7
+//		sc = new Scanner(System.in);
+//		
+//		int P = 0;
+//		int Q = 0; 
+//		int array = 0;
+//		
+//		System.out.println("Escriba el número P");
+//		P = sc.nextInt();
+//		
+//		System.out.println("Escriba el número Q");
+//		Q = sc.nextInt();
+//		
+//		if(P > Q) 
+//		{
+//			System.out.println("El valor P tiene que ser mayor que Q");
+//		}else 
+//			{	
+//				array = Q - P;
+//				int[] numeros7 = new int[array];	
+//				for (int i = 0; i <= array; i++) {
+//					
+//					numeros7[i] = P + i;
+//					System.out.println("El array desde P hasta Q es: "+ numeros7[i]);
+//				}
+//			}
+//		//Ejercicio8
+//		sc = new Scanner(System.in);
+//				
+//		double[] numeros8 = new double[100];
+//		
+//		System.out.println("Introduce un valor real R(entre 0.0 y 1.0: )");
+//		double R = sc.nextDouble();
+//		
+//		int contador = 0;
+//		for(int i = 0; i < numeros8.length;i ++ ) {
+//			
+//			numeros8[i] = Math.random();
+//			if (numeros8[i] >= R) {
+//				contador++;
+//			}
+//		}
+//		System.out.println("Hay "+contador+ " mayores o iguales que "+ R );
+		
+		//Ejercicio9
+//		
+//		int [] numeros9 = new int [100];
+//		int N = 0;
+//		
+//		System.out.println("Escriba la posicion N");
+//	    N = sc.nextInt(); 
+//	    boolean existe = false;	
+//	    	
+//	    	
+//	    for (int i = 0; i < numeros9.length; i++) {
+//	    	numeros9[i] = (int) (Math.random() * 10 + 1);
+//	    	
+//	    	if (numeros9[i] == N) {
+//	    		existe = true;
+//	    		System.out.println("Está en la posicion " + i);
+//	    		
+//	    	}
+//	    }
+		//Ejercicio10
+		  
+//	    sc = new Scanner(System.in);
+//	    
+//		 System.out.print("Introduce el número de personas: ");
+//	     int N = sc.nextInt();
+//		
+//	     double[] alturas = new double[N];
+//		
+//	     for (int i = 0; i < N; i++) {
+//	    	 System.out.print("Introduce la altura de la persona: ");
+//	     	 alturas[i] = sc.nextDouble();
+//	     }
+//	     
+//	     	double sumaAlturas = 0;
+//	        double alturaMax = alturas[0];
+//	        double alturaMin = alturas[0];
+//	     
+//	     for (int i = 0; i < N; i++) {
+//	         sumaAlturas += alturas[i];
+//	         if (alturas[i] > alturaMax) {
+//	             alturaMax = alturas[i];
+//	     }
+//	         if (alturas[i] < alturaMin) {
+//	             alturaMin = alturas[i];
+//	         }
+//	     }
+//	     
+//	     double alturaMedia = sumaAlturas / N;
+//		
+//	     int PEMedia = 0;
+//	     int PDMedia = 0;
+//		 
+//	     for (int i = 0; i < N; i++) {
+//	    	 if (alturas[i] > alturaMedia) {
+//	             	PEMedia++;
+//	     } else if (alturas[i] < alturaMedia) {
+//	                PDMedia++;
+//	        }
+//	     }
+//	     
+//	     System.out.println("la altura media es:" + alturaMedia);
+//	     System.out.println("La altura Minima:"+ alturaMin);
+//	     System.out.println("La altura máxima es: "+ alturaMax);
+//	     System.out.println("Personas por encima de la media: " + PEMedia);
+//	     System.out.println("Personas por debajo de la media: " + PDMedia);
+////		
+//		
+		//Ejercicio 11
+	     
+//		int [] primero = new int [100];
+//		int [] alreves = new int [100];
+//		
+//		for (int i = 0; i < primero.length; i++)
+//		{
+//			primero[i] = i + 1;
+//			System.out.println(primero[i]);
+//		}
+//		
+//		for (int i = 0; i < alreves.length; i++)
+//		{
+//			alreves[i] = primero[primero.length-1-i];
+//			System.out.println(alreves[i]);
+//		}
+//		
+//		System.out.println("Los numeros son: " + primero +" "+ alreves);
+		//Ejercicio12
 		sc = new Scanner(System.in);
+		int [] numeros12 = new int [10];
 		
-		int P = 0;
-		int Q = 0; 
-		int array = 0;
+		String opcion = "";
 		
-		System.out.println("Escriba el número P");
-		P = sc.nextInt();
-		
-		System.out.println("Escriba el número Q");
-		Q = sc.nextInt();
-		
-		if(P > Q) 
-		{
-			System.out.println("El valor P tiene que ser mayor que Q");
-		}else 
-			{	
-				array = Q - P;
-				double [] numeros7 = new double[array];
-				
-			}
+		do{
 			
+			System.out.println("a) - Mostrar valores");
+			System.out.println("b) - Introducir valor");
+			System.out.println("c) - Exit");
+			opcion = sc.nextLine();
+		
+			switch(opcion)
+			{
+			case "a":
+				for (int i = 0; i < numeros12.length; i++) {
+   			 
+				System.out.println("El valor del numero "+(i+1) + " es "+ numeros12[i] );
+				}
+				break;
+			
+			case "b":
+				System.out.println("Introduce un valor: ");
+				int V = sc.nextInt();
+				
+				System.out.println("Introduce su posición: ");
+				int P = sc.nextInt();
+				
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			}
+		
+		
+		
+		
+		
+		
+		
+	}while(!opcion.equals("c)"));
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
