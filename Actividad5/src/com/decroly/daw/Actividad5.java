@@ -34,14 +34,74 @@ public class Actividad5 {
 			System.out.println("No son iguales");
 		}
 		// Ejercicio3
-		sc = new Scanner()
+		sc = new Scanner(System.in);
+		
+		System.out.println("Escriba su nombre");
+		String nombre = sc.nextLine();
+		
+		System.out.println("Escriba su primer apellido");
+		String primerapellido = sc.nextLine();
+		
+		System.out.println("Escriba su segundo apellido");
+		String segundoapellido = sc.nextLine();
 		
 		
+		String iniciales = nombre.substring(0,3) + primerapellido.substring(0,3) + segundoapellido.substring(0,3);
 		
+		System.out.println(iniciales.toUpperCase());
 		
+		//Ejercicio4
+		sc = new Scanner(System.in);
 		
+		System.out.println("Introduce una frase: ");
+		String frase = sc.nextLine();
 		
+		frase = frase.toLowerCase();
+		 
+		int a = 0;
+		int e = 0;
+		int ivocal = 0;
+		int u = 0;
+		int o = 0;
 		
+		 for (int i = 0; i < frase.length(); i++) {
+          if (frase.charAt(i) == 'a') {
+              a++;
+          }
+      }
+	 
+
+     for (int i = 0; i < frase.length(); i++) {
+           if (frase.charAt(i) == 'e') {
+               e++;
+           }
+     }
+      
+     for (int i = 0; i < frase.length(); i++) {
+         if (frase.charAt(i) == 'i') {
+             ivocal++;
+         }
+     }
+      
+     for (int i = 0; i < frase.length(); i++) {
+         if (frase.charAt(i) == 'o') {
+             o++;
+         }
+     }
+     
+     for (int i = 0; i < frase.length(); i++) {
+         if (frase.charAt(i) == 'u') {
+             u++;
+         }
+     }
+		
+		System.out.println("Nº de A's: " + a + "\n\" + \"Nº de E's: " + e + "\n\" + \"Nº de I's:" + ivocal + "\n\" + \"Nº de O's: " + o + "\n\" + \"Nº de U's: " + u + "\n");
+		
+		//Ejercicio6
+		sc = new Scanner(System.in);
+		
+		System.out.println("Escribe una frase: ");
+		frase = sc.nextLine();
 		
 		
 		
