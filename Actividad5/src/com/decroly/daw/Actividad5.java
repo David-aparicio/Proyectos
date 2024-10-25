@@ -97,31 +97,38 @@ public class Actividad5 {
 		
 		System.out.println("Nº de A's: " + a + "\n\" + \"Nº de E's: " + e + "\n\" + \"Nº de I's:" + ivocal + "\n\" + \"Nº de O's: " + o + "\n\" + \"Nº de U's: " + u + "\n");
 		
-		//Ejercicio6
-		sc = new Scanner(System.in);
-		
-		System.out.println("Escribe una frase: ");
-		frase = sc.nextLine();
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		//Ejercicio5
+				sc = new Scanner(System.in);
+				  
+		        System.out.println("Escribe una frase: ");
+				
+		  		 String frasee = sc.nextLine().toLowerCase();
+		  		 
+		  		 String frasee2 = frasee.replaceAll(" ", "").toLowerCase();
+		        
+		        boolean palindromo = true;
+		        
+		        int letras = frasee2.length();
+		        
+		        for (int i = 0; i < letras; i++) {
+		       	 
+		            if (frasee2.charAt(i) != frasee2.charAt(letras - 1 - i)) {
+		           	 
+		                palindromo = false;
+		                
+		            }
+		        }
+		        
+		        if (palindromo == true){
+		       	 
+		            System.out.println("Es un palindromo");
+		           
+		        } else if (palindromo == false){
+		       	 
+		            System.out.println("No es un palindromo");
+		            
+		        }
+				
 		
 		
 		
