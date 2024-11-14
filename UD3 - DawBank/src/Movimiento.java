@@ -34,12 +34,13 @@ public class Movimiento {
         public boolean getTipo(){
             return this.tipo;
         }
-        public double setCantidad(){
-            if(this.cantidad != null){
-                return this.cantidad;
+        public void  setCantidad(){
+            if(cantidad >0){
+                this.cantidad = cantidad;
+            }else{
+                System.out.println("El valor debe ser positivo");
             }
-            return this.cantidad;
-        }
+        }  
 
         //Metodo
 
@@ -50,12 +51,6 @@ public class Movimiento {
     
             return info;
         }
-
-
-
-
-
-
 
 
 }
