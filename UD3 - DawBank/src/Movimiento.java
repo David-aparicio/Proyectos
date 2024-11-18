@@ -9,7 +9,6 @@ public class Movimiento {
         private String fecha;
         private boolean tipo;
         private double cantidad;
-        private String mostrarInfoMovimiento;
 
 
 
@@ -33,6 +32,9 @@ public class Movimiento {
         }
         public boolean getTipo(){
             return this.tipo;
+        }
+        public double getCantidad(){
+            return this.cantidad;
         }
         public void  setCantidad(){
             if(cantidad >0){
