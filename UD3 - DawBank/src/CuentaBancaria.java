@@ -1,3 +1,5 @@
+
+
 public class CuentaBancaria {
     private String iban;
     private String titular;
@@ -57,11 +59,12 @@ public class CuentaBancaria {
             if (this.saldo - m1.getCantidad()<= -50){
                 System.out.println("No puedes operar con un saldo menor a -50");
             }else{
-                this
+                this.movimientos[elementosactuales] = m1;
+                this.elementosactuales ++;
+                this.saldo = this.saldo - m1.getCantidad();
+                isRemoved = true;
             }
         }
-
-
         return isRemoved;
     }
 }
