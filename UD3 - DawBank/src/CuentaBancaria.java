@@ -7,9 +7,9 @@ public class CuentaBancaria {
     private Movimiento [] movimientos;
     private int elementosactuales;
 
-    public CuentaBancaria(String iban, String titular){
+    public CuentaBancaria(String iban, String titular, int nMovimientos){
         this.iban = iban;
-        this.movimientos = new Movimiento[100];
+        this.movimientos = new Movimiento[nMovimientos];
         this.titular = titular;
         this.saldo = 0;
     }
