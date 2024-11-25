@@ -23,32 +23,35 @@ public class DawBank {
                 }
 
                 int movimientos = 0;
-            CuentaBancaria datosusuario = new CuentaBancaria(iban, titular, movimientos);
-            
-
+                CuentaBancaria datosusuario = new CuentaBancaria(iban, titular, movimientos);
 
             
             do { 
                 reader = new Scanner(System.in);
-                System.out.println("Por favor seleccione una opcion \n" + "1) Datos de la cuenta. \n" + "2) IBAN. \n" + "3) Titular.\n" +"4) Saldo. \n" + "5) Ingreso. \n" + "6) Retirada. \n" + "7) Movimiento. \n" + "8) Salir. \n");
+                System.out.println("===== Menu Principal ===== \n" + "1) Datos de la cuenta. \n" + "2) IBAN. \n" + "3) Titular.\n" +"4) Saldo. \n" + "5) Ingreso. \n" + "6) Retirada. \n" + "7) Movimiento. \n" + "8) Salir. \n");
                 opcion = reader.nextLine();
 
                     switch(opcion){
                             
-                        case "1":  
-                        reader = new Scanner(System.in);
-                            do {
+                        case "1": 
                             System.out.println("IBAN: " + datosusuario.getIban());
                             System.out.println("TITULAR: "+ datosusuario.getTitular());
                             System.out.println("SALDO: "+ datosusuario.getSaldo());
                             break;
-                        }
                         
                         case  "2":
                             System.out.println("El IBAN del usuario es: "+ datosusuario.getIban());
                             break;
                         case "3" : 
-                            System.out.println("");
+                            System.out.println("El titular de la cuenta es: \n" + datosusuario.getTitular());
+                            break;
+                        case "4" :
+                            System.out.println(datosusuario.getSaldo()+"€");
+                            break;
+                        case "5" :
+                            System.out.println("Escriba la cantidad a ingresar: ");
+                            reader = new Scanner(System.in);
+                            double Ingresar = entrada.nextDouble;
 
 
 
