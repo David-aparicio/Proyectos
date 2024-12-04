@@ -12,6 +12,10 @@ public class Cliente {
     private LocalDate fechaBaja;
     private Pelicula [] peliculasAlquiladas;
 
-    public Cliente(String dni, )
+    public Cliente(String dni, String nombre, String direccion, LocalDate fechaNacimiento,Pelicula peliculasAlquiladas){
+        this.dni = dni;
+        this.nombre = nombre;
+        
+    }
 
 }
