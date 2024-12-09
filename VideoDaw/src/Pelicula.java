@@ -17,15 +17,15 @@ public class Pelicula {
     private boolean isAlquilada;
 
 
-    public Pelicula(String codigoPelicula,Genero genero, String titulo){
+    public Pelicula(Genero genero, String titulo){
 
        this.codigoPelicula = "PE-"+contador;
        contador++;
+
        this.titulo = titulo;
        this.pGenero = pGenero;
+
        this.fechaRegistro = LocalDate.now();
-       this.fechaBaja = LocalDate.now();
-       this.fechaAlquilada = LocalDateTime.now();
        this.isAlquilada = false;
     }
 
