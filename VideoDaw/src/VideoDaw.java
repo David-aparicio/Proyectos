@@ -86,21 +86,22 @@ public class VideoDaw {
             System.out.println(i + peliculasRegistradas[i].mostrarInfoPelicula());
         }
        return peliculasDisponibles;
-       }
+    }
 
-       public String mostrarNoAlquiladas(){
+    public String mostrarNoAlquiladas(){
         String peliculasNoAlquiladas = "";
         if(nPeliculasRegistradas > 0){
         for(int i = 0; i < nPeliculasRegistradas; i++){
             if (peliculasRegistradas[i].getIsAlquilada() == false){
-                peliculasNoAlquiladas += (peliculasRegistradas[i].getIsAlquilada());
+                peliculasNoAlquiladas += (peliculasRegistradas[i].mostrarInfoPelicula());
             }
         }
         }else{
             peliculasNoAlquiladas = "No hay peliculas";
         }
-    return peliculasNoAlquiladas;
+        return peliculasNoAlquiladas;
     }
+
     public Pelicula posiciondelapeliculaArray(int i){
         return this.peliculasRegistradas[i];
     } 

@@ -1,15 +1,12 @@
 import java.time.LocalDate;
-import java.time.Period;
-import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.Scanner;
 
 public class GestionVideoDaw {
     public static void main(String[] args){
     Scanner reader  = new Scanner (System.in);
     String opcion = "";
-    final String patronDNI = "[0-9]{8}[A-Z]{1}";
-    final String patronCIF = "[A-Z]{1}[0-9]{8}";
+    final String patronDNI = "[0-9]{8}[A-Z]{1}"; //  01234567A 
+    final String patronCIF = "[A-Z]{1}[0-9]{8}"; //  A12345678
     
     VideoDaw videoClub = null;
     Cliente nuevoCliente = null;
@@ -84,8 +81,8 @@ public class GestionVideoDaw {
                     LocalDate fechaNacimiento = MiUtils.fechaconformato();
 
                     LocalDate hoy = LocalDate.now();
-                    Period edadEnAños = Period.between(fechaNacimiento, hoy);
-                    if (edadEnAños.getYears() > 18) {
+                    int n = hoy.getYear() - fechaNacimiento.getYear();
+                    if (n > 18) {
                         
                         nuevoCliente = new Cliente(dni, nombre, direccionUsuario, fechaNacimiento);
                         
@@ -96,15 +93,29 @@ public class GestionVideoDaw {
                             System.out.println("El cliente ya existe.");
                         }
                         }
-                        else{
-                        System.out.println("El cliente debe ser mayor de edad.");
-                        }                    
+                        else if (n == 18){
+                            int m = hoy.getMonthValue() - fechaNacimiento.getMonthValue();
+                            if(m > 0){
+                                nuevoCliente = new Cliente(dni, nombre, direccionUsuario, fechaNacimiento);
+                                if (videoClub.registrarCliente(nuevoCliente) == true) {
+                                    System.out.println("Cliente registrado.");
+                                }
+                                else{
+                                    System.out.println("El cliente ya existe.");
+                                }
+                            } else{
+                                System.out.println("El cliente no cumple la mayoria de edad por los meses.");
+                            }
+                        }else{
+                            System.out.println("El cliente es menor de edad.");
+                        }                
+                }else {
+                    System.out.println("Tienes que crear un videoClub primero.");
                 }
                 break;
             case "4" :
                 reader = new Scanner(System.in);
-                 if(videoClub != null && videoClub.getnPeliculasRegistradas() > 0 &&
-                 nuevaPelicula != null && nuevoCliente != null){
+                 if(videoClub != null && videoClub.getnPeliculasRegistradas() > 0 &&nuevaPelicula != null && nuevoCliente != null){
 
                     System.out.println("Quien va a alquilar la pelicula");
                     System.out.println(videoClub.mostrarClientes());
@@ -118,6 +129,7 @@ public class GestionVideoDaw {
 
                         videoClub.alquilarPelicula(cliente, pelicula);
                         videoClub.clientesregistradosArray(cliente).añadirPelicula(videoClub.posiciondelapeliculaArray(pelicula));
+                        System.out.println("Se ha alquilado con exito.");
                         
                     } else if (videoClub.posiciondelapeliculaArray(pelicula).getIsAlquilada() == true){
                         System.out.println("La pelicula seleccionada no esta disponible");
@@ -129,29 +141,36 @@ public class GestionVideoDaw {
             case "5" :
                 if (videoClub != null && videoClub.getnClientesRegistrados() > 0 && nuevaPelicula != null && nuevoCliente != null) {
                     
-                    System.out.println("Elige quien va a devolver la pelicula.");
+                    System.out.println("Elige el cliete que va a devolver la pelicula.");
                     System.out.println(videoClub.mostrarClientes());
                     int clientequeladevuelve = reader.nextInt();
 
+                    if(videoClub.clientesregistradosArray(clientequeladevuelve).getNAlquiladas() > 0){
                     System.out.println("Selecciona la pelicula: ");
                     System.out.println(videoClub.mostrarPeliculas());
-                    int peliculadevolver = reader.nextInt();
+                    int codigoPelicula = reader.nextInt();
+                    
+                    videoClub.devolverPelicula(clientequeladevuelve, codigoPelicula); //corregir esta tarde pq me desaparece la pelicula.
 
-                    videoClub.devolverPelicula(clientequeladevuelve, peliculadevolver);
-                    videoClub.clientesregistradosArray(peliculadevolver).eliminarPelicula(videoClub.clientesregistradosArray(clientequeladevuelve));
+                    System.out.println("Movimientos");
+                    videoClub.clientesregistradosArray(codigoPelicula).mostrarPeliculas();
+                    }else{
+                        System.out.println("No hay peliculas alquiladas.");
+                    }
                 }else{
-                    System.out.println("No hay peliculas alquiladas");
+                    System.out.println("No hay peliculas registradas en el videoclub");
                 }
-            
                 break;
             case "6" : 
                 reader = new Scanner(System.in);
                 if (videoClub != null && videoClub.getnClientesRegistrados() > 0) {
                     System.out.println(videoClub.mostrarClientes());
-                    System.out.println("Introduce el numero de socio del cliente a dar de baja");
-                    int numSocio = reader.nextInt();
+                    System.out.println("Introduce el numero que sale alante del cliente a dar de baja");
+                    int numCliente = reader.nextInt();
 
-                    videoClub.darBajaCliente(nuevoCliente, numSocio);
+                    videoClub.darBajaCliente(nuevoCliente, numCliente);
+
+                    System.out.println("Cliente eliminado.");
                 }else{
                     System.out.println("No hay ningun cliente registrado");
                 }
@@ -175,7 +194,7 @@ public class GestionVideoDaw {
             default:
                 System.out.println("Opción no válida. Intente de nuevo. ");                            
         }
-    } while (true);
+    } while (!opcion.equals("8"));
 }
 }
 

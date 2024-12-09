@@ -1,6 +1,5 @@
 
 import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
 
 public class Cliente {
 
@@ -13,6 +12,7 @@ public class Cliente {
     private LocalDate fechaBaja;
     private Pelicula [] peliculasAlquiladas;
     private int nAlquiladas;
+
  //   private LocalDate hoy;
 
     public Cliente(String dni, String nombre, String direccion, LocalDate fechaNacimiento){
@@ -22,7 +22,7 @@ public class Cliente {
         this.numSocio = "SO-"+contador;
         contador++;
         this.fechaNacimiento = fechaNacimiento;
-        this.peliculasAlquiladas = new Pelicula[0];
+        this.peliculasAlquiladas = new Pelicula[100];
         this.nAlquiladas = 0;
     }
 
@@ -46,6 +46,9 @@ public class Cliente {
     }
     public LocalDate getFechaBaja() {
         return fechaBaja;
+    }
+    public int getNAlquiladas(){
+        return nAlquiladas;
     }
     public Pelicula[] getPeliculasAlquiladas() {
         return peliculasAlquiladas;
@@ -99,4 +102,8 @@ public class Cliente {
         System.err.println(peliculasAlquiladas[i].mostrarInfoPelicula());
     }
    }
+
+    public int getnAlquiladas() {
+        return nAlquiladas;
+    }
 }

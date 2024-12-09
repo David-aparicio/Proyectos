@@ -62,7 +62,7 @@ public class Pelicula {
         String infoP = String.format("Pelicula - codigoPelicula: %s titulo: %s pGenero: %s fechaRegistro: %s fechaBaja: %s fechaAlquilada: %s isAlquilada: ", this.codigoPelicula,
          this.titulo, this.pGenero, this.fechaRegistro,this.fechaBaja
         , this.fechaAlquilada,this.isAlquilada);
-        return infoP;
+        return infoP+"\n";
     }
     public boolean Alquiler(){ 
         this.isAlquilada = true;
