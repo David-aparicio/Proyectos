@@ -72,30 +72,11 @@ public class Cliente {
    }
    public boolean eliminarPelicula(Pelicula p1) {
     boolean isRemoved = false;
-    if (p1 != null) {
-        int index = -1;
-
-        // Buscar la película en el array
-        for (int i = 0; i < this.nAlquiladas; i++) {
-            if (this.peliculasAlquiladas[i] != null && 
-                this.peliculasAlquiladas[i].getCodigoPelicula().equalsIgnoreCase(p1.getCodigoPelicula())) {
-                index = i;
-                break;
-            }
+        if (p1 != null) {
+            nAlquiladas--;
         }
-
-        // Si la película fue encontrada, eliminarla
-        if (index != -1) {
-            for (int i = index + 1; i < this.nAlquiladas; i++) {
-                this.peliculasAlquiladas[i - 1] = this.peliculasAlquiladas[i];
-            }
-            this.peliculasAlquiladas[this.nAlquiladas - 1] = null; // Limpiar el último elemento
-            this.nAlquiladas--;
-            isRemoved = true;
-        }
+        return isRemoved;
     }
-    return isRemoved;
-}
 
     public void mostrarPeliculas(){
     for (int i = 0; i < nAlquiladas; i++) {

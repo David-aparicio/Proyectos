@@ -150,7 +150,8 @@ public class GestionVideoDaw {
                     System.out.println(videoClub.mostrarPeliculas());
                     int codigoPelicula = reader.nextInt();
                     
-                    videoClub.devolverPelicula(clientequeladevuelve, codigoPelicula); //corregir esta tarde pq me desaparece la pelicula.
+                    videoClub.devolverPelicula(clientequeladevuelve, codigoPelicula);
+                    videoClub.clientesregistradosArray(codigoPelicula).eliminarPelicula(videoClub.posiciondelapeliculaArray(codigoPelicula)); 
 
                     System.out.println("Movimientos");
                     videoClub.clientesregistradosArray(codigoPelicula).mostrarPeliculas();
@@ -184,6 +185,7 @@ public class GestionVideoDaw {
                     int codigoPelicula = reader.nextInt();
 
                     videoClub.darBajaPelicula(nuevaPelicula, codigoPelicula);
+                    System.out.println("Pelicula eliminada con exito.");
                 }else {
                     System.out.println("No hay peliculsa registradas");
                 }

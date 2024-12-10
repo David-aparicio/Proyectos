@@ -83,7 +83,7 @@ public class VideoDaw {
     public String mostrarPeliculas(){
         String peliculasDisponibles = "";
         for(int i = 0; i < nPeliculasRegistradas; i++){
-            System.out.println(i + peliculasRegistradas[i].mostrarInfoPelicula());
+            System.out.println(i + "-" + peliculasRegistradas[i].mostrarInfoPelicula());
         }
        return peliculasDisponibles;
     }
@@ -118,7 +118,7 @@ public class VideoDaw {
 
     public boolean devolverPelicula(int c, int p){
         this.clientesregistradosArray(c);
-        this.posiciondelapeliculaArray(p).Alquiler();
+        this.posiciondelapeliculaArray(p).Devolver();
         boolean isRemoved = false;
         return isRemoved;
     }

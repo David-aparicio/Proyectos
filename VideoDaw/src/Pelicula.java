@@ -1,4 +1,5 @@
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -25,6 +26,7 @@ public class Pelicula {
        this.pGenero = pGenero;
        this.fechaRegistro = LocalDate.now();
        this.isAlquilada = false;
+       this.fechaAlquilada = fechaAlquilada;
     }
 
     public String getCodigoPelicula(){
@@ -49,14 +51,7 @@ public class Pelicula {
         return isAlquilada;
     }
 
-        public void setFechaAlquilada(LocalDateTime fechaalq){
-        this.fechaAlquilada = fechaalq;
-        if (fechaalq != null) {
-            this.isAlquilada = true;
-        }else{
-            this.isAlquilada = false;
-        }
-        }
+
 
     public String mostrarInfoPelicula(){
         String infoP = String.format("Pelicula - codigoPelicula: %s titulo: %s pGenero: %s fechaRegistro: %s fechaBaja: %s fechaAlquilada: %s isAlquilada: ", this.codigoPelicula,
@@ -68,5 +63,15 @@ public class Pelicula {
         this.isAlquilada = true;
         this.fechaAlquilada = LocalDateTime.now();
         return isAlquilada;
+    }
+    public boolean Devolver(){
+        this.isAlquilada = false;
+        LocalDateTime h = LocalDateTime.now();
+        Duration duracion = Duration.between(this.fechaAlquilada, h      );
+        if (duracion.toHours() > 24) {
+            System.out.println("Ya ha excedido el tiempo de devolucion de 48h");
+        }
+        return isAlquilada;
+    
     }
 }
