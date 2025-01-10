@@ -37,7 +37,7 @@ public class Satelites extends Astro{
 
         sb.append(", Periodo de Rotacion =").append(super.getDistanciaMedia());
 
-        sb.append(", Periodo de Trastacion =").append(super.getPeríodoRotaciónHoras());
+        sb.append(", Periodo de Traslacion =").append(super.getPeríodoRotaciónHoras());
 
         sb.append(", Distancia Media =").append(super.getPeríodoTraslaciónHoras());
 

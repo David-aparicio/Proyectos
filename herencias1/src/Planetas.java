@@ -46,7 +46,7 @@ public class Planetas extends Astro{
 
         sb.append(", Periodo de Rotacion =").append(super.getDistanciaMedia());
 
-        sb.append(", Período de traslación alrededor del cuerpo que orbitan =").append(super.getPeríodoRotaciónHoras());
+        sb.append(", Período de traslación =").append(super.getPeríodoRotaciónHoras());
 
         sb.append(", Distancia Media =").append(super.getPeríodoTraslaciónHoras());
 

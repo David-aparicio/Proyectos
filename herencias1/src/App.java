@@ -10,7 +10,7 @@ public class App {
 
         Astro [] astros = new Astro[100]; 
     
-        System.out.println("\n Pon las medidas necesarias del Astro\n");
+        System.out.println("\n -----Pon las medidas necesarias del Astro-----\n");
 
         System.out.println("Masa del cuerpo");
         double masa = sc.nextDouble();
@@ -22,14 +22,14 @@ public class App {
         double rotacion = sc.nextDouble();
 
         System.out.println("Período de traslación alrededor del cuerpo que orbitan");
-        double translacion = sc.nextDouble();
+        double traslacion = sc.nextDouble();
 
         System.out.println("Distancia media al cuerpo");
         double distancia = sc.nextDouble();
 
-        Astro Info = new Astro(masa, diametro, rotacion, translacion, distancia);
+        Astro informacion = new Astro(masa, diametro, rotacion, traslacion, distancia);
 
-        System.out.println(Info);
+        System.out.println(informacion);
 
         System.out.println("¿que es tu astro?");
 
@@ -66,10 +66,10 @@ public class App {
                     }else if (tieneSatelitesSi.equalsIgnoreCase("no")){
                         tieneSatelites = false;
                     
-                    }else System.out.println("tienes que escribir 'si' o 'no'");
+                    }else System.out.println("Respuesta incorrecta");
 
-                Planetas Info2 = new Planetas (masa, diametro, rotacion, translacion, distancia,distanciaSol,orbitaSol,tieneSatelites); 
-                System.out.println(Info2);
+                Planetas informacion2 = new Planetas (masa, diametro, rotacion, traslacion, distancia,distanciaSol,orbitaSol,tieneSatelites); 
+                System.out.println(informacion2);
 
             }if (options.equals("2")){
 
@@ -83,12 +83,12 @@ public class App {
                 sc = new Scanner(System.in);
                 System.out.println("planeta al que pertenece");
                 String planetaPerteneciente = sc.nextLine();
-                Satelites Info3 = new Satelites(masa, diametro, rotacion, translacion, distancia,distanciaPlaneta,orbitaPlaneta,planetaPerteneciente);
-                System.out.println(Info3);
+                Satelites informacion3 = new Satelites(masa, diametro, rotacion, traslacion, distancia,distanciaPlaneta,orbitaPlaneta,planetaPerteneciente);
+                System.out.println(informacion3);
 
             }if (options.equals("3")){
             
-            System.out.println("ya estaria terminado");
+            System.out.println("Fin del programa");
 
             }     
     }
