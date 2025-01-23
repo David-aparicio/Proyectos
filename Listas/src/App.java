@@ -27,19 +27,33 @@ public class App {
         
         }
         //Ejercicio5      
-        Producto         = p
+            itera = productos.iterator();
+            while (itera.hasNext()){
+                cadaProducto = itera.next();
+
+                if(cadaProducto.getNombre().equals("Filipinos")){
+                    itera.remove();
+                }
+
+                if(cadaProducto.getNombre().equals("Takis")){
+                    itera.remove();
+                }
+            }
             
             System.out.println(" \n Recorrido después de borrar los productos 1 y 2 \n");
             for (Producto productosRestantes : productos) {
             System.out.println(productosRestantes.getNombre()+ "  - "+productosRestantes.getCantidad());
             } 
         //Ejercicio6
-     /*
+     
         productos.add(2, new Producto("Fanta", 3));
-        System.out.println("Recorriendo de nuevo todos los elementos");
-        for (int i=0; i<trians.size(); i++) {
-        System.out.println(trians.get(i).verTipo());
-        }
+        System.out.println("Recorriendo de nuevo todos los elementos, despues de añadirle fanta");
+        for (Producto productosRestantes : productos) {
+            System.out.println(productosRestantes.getNombre()+ "  - "+productosRestantes.getCantidad());
+            }
+
+        //Ejercicio7
     }
-        */
+        
 }
+
