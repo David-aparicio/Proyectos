@@ -20,7 +20,7 @@ public class Actividad1 {
 	// Ejercicio 3
 	
 	Scanner reader = new Scanner(System.in);
-/*	System.out.println("Escriba el lado");
+	System.out.println("Escriba el lado");
 	double lado1 = reader.nextDouble();
 	
 	System.out.println("El area es : " +  lado1 * lado1);
@@ -90,7 +90,7 @@ public class Actividad1 {
 	
 	System.out.println("El orden de menor a mayor es: " + menor + " " + mayor);
 	
-*/	// Ejercicio 9
+	// Ejercicio 9
 	
 	reader = new Scanner(System.in);
 	System.out.println("Escriba el primer número");
