@@ -45,14 +45,26 @@ public class App {
             System.out.println(productosRestantes.getNombre()+ "  - "+productosRestantes.getCantidad());
             } 
         //Ejercicio6
-     
+
         productos.add(2, new Producto("Fanta", 3));
+
+        //Ejercicio7
         System.out.println("Recorriendo de nuevo todos los elementos, despues de añadirle fanta");
         for (Producto productosRestantes : productos) {
             System.out.println(productosRestantes.getNombre()+ "  - "+productosRestantes.getCantidad());
             }
 
-        //Ejercicio7
+        //Ejercicio8
+        productos.sort((p1, p2) -> p1.getNombre().compareTo(p2.getNombre()));
+        System.out.println("\n" + "Productos ordenados alfabéticamente : ");
+        Iterator <Producto> itera3 = productos.iterator();
+        while (itera3.hasNext()){
+            Producto cadaProducto2 = itera3.next();
+            System.out.println(cadaProducto2.getNombre());
+        }
+        //Ejercicio9
+        productos.clear();
+
     }
         
 }
