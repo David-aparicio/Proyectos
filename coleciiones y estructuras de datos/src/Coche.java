@@ -1,8 +1,11 @@
-public class Coches {
+public class Coche {
     private String color;
     private String marca;
 
-    
+    public Coche(String color, String marca){
+        this.color = color;
+        this.marca = marca;
+    }
     public String getColor() {
         return color;
     }
@@ -25,6 +28,5 @@ public class Coches {
         sb.append('}');
         return sb.toString();
     }
-    
     
 }
