@@ -62,13 +62,13 @@ public class App {
                     System.out.print("Introduce un número: ");
                     int numero = sc.nextInt();
     
-                    
                     imprimePositivo(numero);
-    
+                    
                     imprimeNegativo(numero);
-    
+                    
+
                 } catch (Exception e) {
-                    System.out.println("Valor incorrecto");
+                    S
                 } finally {
                     System.out.print("¿Quieres introducir otro número? (s/n): ");
                     String respuesta = sc.next();
@@ -78,7 +78,9 @@ public class App {
                 }
             }
         }
-        public static void imprimePositivo(int p) throws Exception {
+
+        
+        public static void imprimePositivo(int p) throws Positivos {
             if (p < 0) {
                 throw new Exception("Error: El número debe ser positivo.");
             }
