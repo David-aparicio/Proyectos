@@ -80,7 +80,7 @@ public class App {
         }
 
         
-        public static void imprimePositivo(int p) throws Positivos {
+        public static void imprimePositivo(int p) throws Exception {
             if (p < 0) {
                 throw new Exception("Error: El número debe ser positivo.");
             }
