@@ -6,8 +6,16 @@ public class App {
         System.out.println("Bienvenido a DawBank tu banco de confianza ");
 
         final String patronIban = "[A-Z]{2}[0-9]{22}";
-
-        String iban = MiUtils.comprobarPatronRepetidamente(patronIban, "Introduzca el IBAN");
+        String iban = "";
+        try {
+            iban = MiUtils.comprobarPatronRepetidamente(patronIban, "Introduzca el IBAN");
+        
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        Cliente nuevoCliente = null;
+        CuentaBancaria miCuenta = null;
+        try {
         System.out.println("Vamos a crear un cliente");
         String nombre = MiUtils.leerTextoPantalla("Introduce el nombre del cliente: ");
         LocalDate fechaNacimiento = MiUtils.leerFecha("Introduce la fecha de cumpleaños: ");
@@ -15,12 +23,17 @@ public class App {
         String dni = MiUtils.leerTextoPantalla("Intdocuce el dni");
         String direccion = MiUtils.leerTextoPantalla("Introduce la direccion: ");
 
-        Cliente nuevoCliente = new Cliente(nombre, dni, fechaNacimiento, numeroTeléfono, dni, direccion);
-        CuentaBancaria miCuenta = new CuentaBancaria(nuevoCliente, iban);
+        nuevoCliente = new Cliente(nombre, dni, fechaNacimiento, numeroTeléfono, dni, direccion);
+        miCuenta = new CuentaBancaria(nuevoCliente, iban);   
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
 
         String opcion = "";
         Scanner reader;
         do {
+            
             reader = new Scanner(System.in);
             
             imprimirMenuOpciones();
@@ -32,7 +45,6 @@ public class App {
 
         } while (!opcion.equalsIgnoreCase("8"));
     }
-
     private static void imprimirMenuOpciones() {
         System.out.println("Escoga la opcion que desee");
         System.out.println("1. Datos de la cuenta");
@@ -63,32 +75,34 @@ public class App {
                 break;
 
             case "5":
+            try {
                 double cantidad = MiUtils.leerDoublePantalla("Introduzca la cantidad a ingresar");
                 miCuenta.ingresar(cantidad);
-                if(cantidad > 3000.0){
-                    System.out.println("ALta cantidad: se ejecuta aviso a Hacienda");
-                }
+                
+            } catch (AvisarHaciendaException | ValorIncorrecto e) {
+                System.out.println(e.getMessage());
+            }
                 break;
 
             case "6":
+            try {
                 double cantidadR = MiUtils.leerDoublePantalla("Introduzca la cantidad a retirar");
-                if((miCuenta.getSaldo()-cantidadR) < -50){
-                    System.out.println("“AVISO: Saldo negativo, no se puede realizar la retirada");
-                }
-                else{
-                    miCuenta.retirar(cantidadR);
-                }
+                miCuenta.retirar(cantidadR);
+            } catch (CuentaException | ValorIncorrecto e) {
+                System.out.println(e.getMessage());
+            }
                 break;
 
             case "7":
                 System.out.println(miCuenta.mostrarInfoMovimientos());
                 break;
             case "8":
-                System.out.println("Se cerrara el programa. Sayonra baby!!!");
+                System.out.println("Se cerrara el programa.");
                 break;
 
             default:
                 System.out.println("Opcion incorrecta, vuelva a escoger");
-        }   
+        }  
+            
     }
 }

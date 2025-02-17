@@ -37,7 +37,7 @@ public class MiUtils {
      * Funcion generica que recibe un patron en formato string y comprueba el texto
      */
     public static boolean comprobarPatron(String patron, String texto)
-    {
+    throws CuentaException{
         boolean isOk = false;
         Pattern pat = Pattern.compile(patron); //"[0-9]{7,8}[A-Za-z]"
         Matcher mat = pat.matcher(texto);
@@ -45,7 +45,7 @@ public class MiUtils {
         return isOk;
     }
 
-    public static String comprobarPatronRepetidamente(String patron, String mensaje){
+    public static String comprobarPatronRepetidamente(String patron, String mensaje)throws CuentaException{
         boolean isOk = false;
         String texto;
         do { 

@@ -33,27 +33,39 @@ public class CuentaBancaria {
     }
 
 
-    public boolean ingresar(double cantidad){
-        boolean isOk = false;
-        Movimiento m = new Movimiento(Tipo.Ingreso, cantidad);
+    public void ingresar(double cantidad)throws AvisarHaciendaException,ValorIncorrecto{
+                Movimiento m = new Movimiento(Tipo.Ingreso, cantidad);
         this.saldo = this.saldo + m.getCantidad();
-        this.registrarMovimiento();
-        isOk = true;
-        return isOk;
-    }
-
-    public boolean retirar(double cantidad){
-        boolean isOk = false;
-        if(this.saldo - cantidad > -50){
-            Movimiento m = new Movimiento(Tipo.Retirada, cantidad);
-            this.saldo = this.saldo - m.getCantidad();
-            this.registrarMovimiento();
-            isOk = true;
+        this.registrarMovimiento(Tipo.Ingreso, cantidad);
+        
+        if (cantidad <= 0) {
+            throw new ValorIncorrecto("La cantidad debe ser mayor a 0.");
         }
-        return isOk;
+        if (cantidad >= 3000) {
+            throw new AvisarHaciendaException("AVISO: Notificar a hacienda. Ten cuidado");
+        }
+
+
+
     }
 
-    public void registrarMovimiento(){
+    public void retirar(double cantidad)throws CuentaException,ValorIncorrecto{
+        Movimiento m = new Movimiento(Tipo.Retirada, cantidad);
+            this.saldo = this.saldo - m.getCantidad();
+            this.registrarMovimiento(Tipo.Retirada, cantidad);
+        if(cantidad <= 0){
+            throw new CuentaException("La cantidad debe ser mayor a 0.");
+        }
+        if(cantidad >= -50){
+            throw new ValorIncorrecto("No se te permite retirar por tu saldo");
+        }
+            
+    }
+
+    public void registrarMovimiento(Tipo tipo,double cantidad){
+
+        Movimiento m = new Movimiento(tipo, cantidad);
+        movimientos.add(m);
         contadorMovimiento++;
     }
 
@@ -61,14 +73,13 @@ public class CuentaBancaria {
 
     public String mostrarInfoMovimientos(){
         String info = "";
-        if(contadorMovimiento > 0){
-            for (Movimiento nuMovimiento : movimientos) {
-                info += nuMovimiento.toString();
+        if(contadorMovimiento > 0){   
+        for (Movimiento m : movimientos) {
+                info += m.toString();
             }
-            }else{
-            info = "No hay movimientos en esta cuenta";
+        }else{
+            info = "No ha habido movimientos."; 
         }
-
         return info;
     }
 
