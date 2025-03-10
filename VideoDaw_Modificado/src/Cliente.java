@@ -1,90 +1,60 @@
 
 import java.time.LocalDate;
+import java.util.Iterator;
+import java.util.LinkedList;
 
-public class Cliente {
+public class Cliente extends Persona{
 
-    private static int contador = 1;
-    private String dni;
-    private String nombre;
-    private String numSocio;
-    private String direccion;
-    private LocalDate fechaNacimiento;
+    private static int contadorsocio = 1;
     private LocalDate fechaBaja;
-    private Pelicula [] peliculasAlquiladas;
-    private int nAlquiladas;
+    private LinkedList <Articulo> articulosAlquilados;
+    private int codigoSocio;
 
- //   private LocalDate hoy;
 
     public Cliente(String dni, String nombre, String direccion, LocalDate fechaNacimiento){
-        this.dni = dni;
-        this.nombre = nombre;
-        this.direccion = direccion;
-        this.numSocio = "SO-"+contador;
-        contador++;
-        this.fechaNacimiento = fechaNacimiento;
-        this.peliculasAlquiladas = new Pelicula[100];
-        this.nAlquiladas = 0;
+        super(dni, nombre, direccion, fechaNacimiento);
+        this.fechaBaja = null;
+        this.codigoSocio = contadorsocio;
+        contadorsocio++;
+        this.articulosAlquilados = new LinkedList<>();
     }
 
-    public String getDni(){
-        return dni;
-    }
-    public static int getContador() {
-        return contador;
-    }
-    public String getNombre() {
-        return nombre;
-    }
-    public String getNumSocio() {
-        return numSocio;
-    }
-    public String getDireccion() {
-        return direccion;
-    }
-    public LocalDate getFechaNacimiento() {
-        return fechaNacimiento;
-    }
+
     public LocalDate getFechaBaja() {
         return fechaBaja;
     }
-    public int getNAlquiladas(){
-        return nAlquiladas;
-    }
-    public Pelicula[] getPeliculasAlquiladas() {
-        return peliculasAlquiladas;
-    }  
 
-    public String mostrarInfoCliente(){
-        String infoC = String.format("Cliente - DNI: %s Nombre: %s Número de socio: %s Dirección: %s Fecha de Nacimiento: %s Fecha de Baja: ", this.dni, this.nombre, this.numSocio,
-         this.direccion, this.fechaNacimiento, this.fechaBaja);
-         return infoC;
+
+    public LinkedList<Articulo> getArticulosAlquilados() {
+        return articulosAlquilados;
     }
 
-   //public boolean añadirPelicula(Pelicula nuevapePelicula)
-   public boolean añadirPelicula (Pelicula nuevaPelicula){
-    boolean isAdd = false;
-    if (nuevaPelicula != null) {
-        this.peliculasAlquiladas[nAlquiladas] = nuevaPelicula;
-        this.nAlquiladas++;
-        isAdd = true;
+
+    public int getCodigoSocio() {
+        return codigoSocio;
     }
-    return isAdd;
-   }
-   public boolean eliminarPelicula(Pelicula p1) {
-    boolean isRemoved = false;
-        if (p1 != null) {
-            nAlquiladas--;
+
+
+    @Override
+    public String toString() {
+        return "Cliente [dni=" + dni + ", nombre=" + nombre + ", direccion=" + direccion + ", fechaNacimiento="
+                + fechaNacimiento + ", codigoSocio=" + codigoSocio + "]";
+    }
+
+    public void agregarArticuloAlquilado(Articulo articulo) {
+        articulosAlquilados.add(articulo);
+    }
+    public String mostrarArticulosAlquilados(){
+        Iterator  <Articulo> itera = articulosAlquilados.iterator();
+        Articulo articulos = null;
+        while (itera.hasNext()){
+            articulos = itera.next();
         }
-        return isRemoved;
+        return articulos.toString();
+    }
+    public void eliminarArticuloAlquilado(Articulo articulo) {
+        articulosAlquilados.remove(articulo);
     }
 
-    public void mostrarPeliculas(){
-    for (int i = 0; i < nAlquiladas; i++) {
-        System.err.println(peliculasAlquiladas[i].mostrarInfoPelicula());
-    }
-   }
-
-    public int getnAlquiladas() {
-        return nAlquiladas;
-    }
+    
 }

@@ -1,28 +1,22 @@
 import java.time.LocalDate;
 
 public class Articulo {
-    protected String cod; // El código es un String para poder poner una letra en el codigo.
     protected String titulo;
+    protected int cod; 
     protected LocalDate fechaRegistro;
     protected LocalDate fechaBaja;
-    protected static int contadorPeliculas = 1;  // Contador para películas
-    protected static int contadorVideojuegos = 1; // Contador para videojuegos
+    protected static int codigo = 1;  
 
     
-    public Articulo(String titulo, String tipo) {
-        if (tipo.equalsIgnoreCase("P")) {
-            this.cod = String.format("P-%04d", contadorPeliculas++);
-        } else if (tipo.equalsIgnoreCase("V")) {
-            this.cod = String.format("V-%04d", contadorVideojuegos++);
-        } else {
-            throw new IllegalArgumentException("Tipo de artículo inválido. Usa 'P' para películas o 'V' para videojuegos.");
-        }
+    public Articulo(String titulo) {
+        this.cod = codigo;
+        codigo++;
         this.titulo = titulo;
         this.fechaRegistro = LocalDate.now();
         this.fechaBaja = null; 
     }
 
-    public String getCod() {
+    public int getCod() {
         return cod;
     }
 

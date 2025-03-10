@@ -1,34 +1,26 @@
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.Period;
+import java.util.Iterator;
+import java.util.LinkedList;
 
 public class VideoDaw {
     private String cif;
     private String direccion;
     private LocalDate fechaAlta;
-    private Pelicula [] peliculasRegistradas;
-    private int nPeliculasRegistradas;
-    private Cliente [] clientesRegistrados;
-    private int nClientesRegistrados;
+    private LinkedList <Articulo> articulosRegistrados = new LinkedList<>();
+    private LinkedList <Cliente> clientesRegistrados = new LinkedList<>();
 
     public VideoDaw(String cif, String direccion ){
         this.cif = cif;
         this.direccion = direccion;
         this.fechaAlta = LocalDate.now();
-        this.peliculasRegistradas = new Pelicula[100];
-        this.clientesRegistrados = new Cliente[100];
-        this.nPeliculasRegistradas = 0;
-        this.nClientesRegistrados = 0;
+        this.articulosRegistrados = articulosRegistrados;
+        this.clientesRegistrados = clientesRegistrados;
     }
 
     public String getCif() {
         return cif;
-    }
-    
-    public int getnPeliculasRegistradas() {
-        return nPeliculasRegistradas;
-    }
-
-    public int getnClientesRegistrados() {
-        return nClientesRegistrados;
     }
 
     public String getDireccion() {
@@ -39,118 +31,169 @@ public class VideoDaw {
         return fechaAlta;
     }
 
-    public Pelicula[] getPeliculasRegistradas() {
-        return peliculasRegistradas;
+    public LinkedList<Articulo> getArticulosRegistrados() {
+        return articulosRegistrados;
     }
 
-    public Cliente[] getClientesRegistrados() {
+    public LinkedList<Cliente> getClientesRegistrados() {
         return clientesRegistrados;
     }
 
-    public String mostrarInfoVideoclub(){
-        String infoVideoclub = String.format("Cif: %s, Direccion: %s, FechaAlta: %s, Peliculas registradas: %s, Clientes registrados: %s",
-        this.cif, this.direccion, this.fechaAlta, this.nPeliculasRegistradas, this.nClientesRegistrados);
-        return infoVideoclub;
+    @Override
+    public String toString() {
+        return "VideoDaw [cif=" + cif + ", direccion=" + direccion + ", fechaAlta=" + fechaAlta
+                + ", articulosRegistrados=" + articulosRegistrados + ", clientesRegistrados=" + clientesRegistrados
+                + "]";
     }
 
-    public boolean registrarCliente(Cliente nuevoCliente){
+    public boolean registrarPelicula(Pelicula p){
         boolean isAdd = false;
-        if(nuevoCliente != null){
-            this.clientesRegistrados[nClientesRegistrados] = nuevoCliente;
-            nClientesRegistrados++;
-            isAdd = true;
+        if(p != null){
+            articulosRegistrados.add(p);
         }
         return isAdd;
     }
-    public String mostrarClientes(){
-        String mostrarClientes = "";
-        if(clientesRegistrados != null){   
-        for(int i = 0; i < nClientesRegistrados; i++){
-            System.out.println(i + "-" + clientesRegistrados[i].mostrarInfoCliente());
-            }
-        }
-        return mostrarClientes;
-    }
-    public boolean nuevaPelicula(Pelicula nueva){
+    public boolean registrarVideojuego(Videojuego v){
         boolean isAdd = false;
-        if (nueva != null){
-            this.peliculasRegistradas [nPeliculasRegistradas] = nueva;
-            nPeliculasRegistradas++;
-            isAdd = true;
+        if(v != null){
+            articulosRegistrados.add(v);
         }
         return isAdd;
     }
-    public String mostrarPeliculas(){
-        String peliculasDisponibles = "";
-        for(int i = 0; i < nPeliculasRegistradas; i++){
-            System.out.println(i + "-" + peliculasRegistradas[i].mostrarInfoPelicula());
-        }
-       return peliculasDisponibles;
-    }
-
-    public String mostrarNoAlquiladas(){
-        String peliculasNoAlquiladas = "";
-        if(nPeliculasRegistradas > 0){
-        for(int i = 0; i < nPeliculasRegistradas; i++){
-            if (peliculasRegistradas[i].getIsAlquilada() == false){
-                peliculasNoAlquiladas += (peliculasRegistradas[i].mostrarInfoPelicula());
+    public boolean registrarCliente(Cliente cliente) throws ClienteExistenteException{
+        for (Cliente c : clientesRegistrados) {
+            if(cliente.getDni().equals(c.getDni())){
+                throw new ClienteExistenteException("Ya existe un cliente registrado con el dni: " + cliente.getDni());
             }
         }
-        }else{
-            peliculasNoAlquiladas = "No hay peliculas";
+        clientesRegistrados.add(cliente);
+        return true;
+    }
+    public String mostrarClientes() {
+        Iterator <Cliente> itera = clientesRegistrados.iterator();
+        StringBuilder resultado = new StringBuilder();
+        while (itera.hasNext()) {
+            Cliente  cliente = itera.next();
+            resultado.append(cliente.toString()).append("\n");
         }
-        return peliculasNoAlquiladas;
+        return resultado.toString();
     }
-
-    public Pelicula posiciondelapeliculaArray(int i){
-        return this.peliculasRegistradas[i];
-    } 
-
-    public Cliente clientesregistradosArray(int i){
-        return this.clientesRegistrados[i];
+    public Cliente posicionCliente(int i){
+        if (i >= 0 && i < clientesRegistrados.size()) {
+            return clientesRegistrados.get(i);
+        }
+        return null;
     }
-    public boolean alquilarPelicula(int c, int p){
-        this.clientesregistradosArray(c);
-        this.posiciondelapeliculaArray(p).Alquiler();
-        boolean isAdd = false;
-        return isAdd;
-    }
-
-    public boolean devolverPelicula(int c, int p){
-        this.clientesregistradosArray(c);
-        this.posiciondelapeliculaArray(p).Devolver();
-        boolean isRemoved = false;
-        return isRemoved;
-    }
-
-    public boolean darBajaCliente(Cliente c, int numSocio){
-        boolean isRemoved = false;
-        if(this.clientesRegistrados != null){
-            this.clientesRegistrados[numSocio] = null;
-            for(int i = numSocio + 1; i < nClientesRegistrados; i++){
-                this.clientesRegistrados [i-1] = this.clientesRegistrados[i];
+    public String mostrarArticulosNoAlquilados(VideoDaw videoclub) {
+        Iterator<Articulo> itera = articulosRegistrados.iterator();
+        StringBuilder noAlquilados = new StringBuilder();
+        while (itera.hasNext()) {
+            Articulo articulo = itera.next();
+            if ((articulo instanceof Pelicula && !((Pelicula) articulo).isAlquilada()) || 
+                (articulo instanceof Videojuego && !((Videojuego) articulo).isAlquilada())) {
+                noAlquilados.append(articulo.toString()).append("\n");
             }
-            this.clientesRegistrados [nClientesRegistrados-1] = null;
-            nClientesRegistrados--;
-            isRemoved = true;
         }
-    return isRemoved;
+        return noAlquilados.toString();
     }
-
-    public boolean darBajaPelicula(Pelicula p, int codigoPelicula){
-        boolean isRemoved = false;
-        if (codigoPelicula >= 0 && codigoPelicula < nPeliculasRegistradas) {
-            this.peliculasRegistradas [codigoPelicula] = null;
-            
-            for(int i = codigoPelicula + 1; i < nPeliculasRegistradas; i++){
-                this.peliculasRegistradas [i-1] = this.peliculasRegistradas[i];
+    public String alquilarArticulo(int cod, String codSocio) throws ArticuloAlquiladoException{
+        Articulo articulo = null;
+        Cliente cliente = null;
+        for (Articulo a : articulosRegistrados) {
+            if(a.getCod()==codSocio){
+                articulo = a;
             }
-            this.peliculasRegistradas [nPeliculasRegistradas-1] = null;
-            nPeliculasRegistradas--;
-            isRemoved = true;
         }
-    return isRemoved;
-    }
+        for (Cliente c : clientesRegistrados) {
+            if(c.getCodigoSocio()==codSocio){
+                cliente = c;
+            }
+        }
+        if(articulo == null){
+            return "El articulo no existe";
+        }
+        if(cliente == null){
+            return "El cliente no existe";
+        }
+        if(articulo instanceof Pelicula && ((Pelicula) articulo).isAlquilada()){
+            throw new ArticuloAlquiladoException("El artículo ya está alquilado.");
+        } else if(articulo instanceof Videojuego && ((Videojuego) articulo).isAlquilada()){
+            throw new ArticuloAlquiladoException("El artículo ya está alquilado.");
+        }
+        LocalDateTime fechaAlquiler = LocalDateTime.now();
+        if (articulo instanceof Pelicula) {
+            ((Pelicula) articulo).setFechaAlquiler(fechaAlquiler);
+            ((Pelicula) articulo).setIsAlquilada(true);
+        } else if (articulo instanceof Videojuego) {
+            ((Videojuego) articulo).setFechaAlquiler(fechaAlquiler);
+            ((Videojuego) articulo).setIsAlquilada(true);
+        }
+        cliente.agregarArticuloAlquilado(articulo);
+        return "Artículo alquilado exitosamente a " + cliente.getNombre();
+        }
+
+        public String darBajaCliente(int codSocio){  for (Cliente cliente : clientesRegistrados) {
+            if (cliente.getCodSocio() == codSocio) {
+                clientesRegistrados.remove(cliente);
+                return cliente.toString();
+            }
+        }
+            return "No se ha encontrado el contacto";
+        }
+         public String devolverArticulo(int cod, int codSocio) throws TiempoExcedidoException{
+                Articulo articulo = null;
+                Cliente cliente = null;
+                for (Articulo a : articulosRegistrados) {
+                    if(a.getCod()==cod){
+                        articulo = a;
+                    }
+                }
+                for (Cliente c : clientesRegistrados) {
+                    if(c.getCodSocio()==codSocio){
+                        cliente = c;
+                    }
+                }
+                if(articulo == null){
+                    return "El articulo no existe";
+                }
+                if(cliente == null){
+                    return "El cliente no existe";
+                }
+
+                LocalDateTime fechaDevolucion = LocalDateTime.now();
+                if (articulo instanceof Pelicula) {
+                    if (!((Pelicula) articulo).isAlquilada()) {
+                        return "El artículo no está alquilado";
+                    }
+                    Period dias = Period.between(((Pelicula) articulo).getFechaAlquiler().toLocalDate(), fechaDevolucion.toLocalDate());
+                    if(dias.getDays() >= 2){
+                        throw new TiempoExcedidoException("Tiempo de alquiler excedido");
+                    }
+                    ((Pelicula) articulo).setIsAlquilada(false);
+                    ((Pelicula) articulo).setFechaAlquiler(null);
+                } else if (articulo instanceof Videojuego) {
+                    if (!((Videojuego) articulo).isAlquilada()) {
+                        return "El artículo no está alquilado";
+                    }
+                    Period dias = Period.between(((Videojuego) articulo).getFechaAlquiler().toLocalDate(), fechaDevolucion.toLocalDate());
+                    if(dias.getDays() >= 2){
+                        throw new TiempoExcedidoException("Tiempo de alquiler terminado");
+                    }
+                    ((Videojuego) articulo).setIsAlquilada(false);
+                    ((Videojuego) articulo).setFechaAlquiler(null);
+                }
+                cliente.eliminarArticuloAlquilado(articulo);
+                return "Artículo devuelto por " + cliente.getNombre();
+            }
+            public String darBajaArticulo(int cod){
+                for (Articulo articulo : articulosRegistrados) {
+                    if (articulo.getCod() == cod) {
+                        articulosRegistrados.remove(articulo);
+                        return articulo.toString();
+                    }
+                }
+                return "No se ha encontrado el articulo";
+            }
 }
 
 

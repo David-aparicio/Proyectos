@@ -11,6 +11,7 @@ public class GestionVideoDaw {
     VideoDaw videoClub = null;
     Cliente nuevoCliente = null;
     Pelicula nuevaPelicula = null;
+    Videojuego nuevoJuego = null;
     
     do {
         reader = new Scanner(System.in);
@@ -19,6 +20,7 @@ public class GestionVideoDaw {
         switch(opcion){
                             
             case "1": 
+                reader = new Scanner(System.in);
                 String cif = MiUtils.comprobarPatronRepetidamente(patronCIF, "\n Escribe el cif de la empresa");
                 String direccion = MiUtils.leerTextoPantalla("Añade la direccion");
 
@@ -28,48 +30,29 @@ public class GestionVideoDaw {
             case  "2":
                 if(videoClub != null){
                     reader = new Scanner(System.in);
-                    String titulo = MiUtils.leerTextoPantalla("Escribe el titulo de la pelicula que quieras registrar\n");
-                    for(int i = 0;i < 1; i++){
-                        System.out.println("¿Cual es su género?\n" + "1) ACCION\n" + "2) AVENTURA\n" + "3) CIENCIA_FICCION\n"
-                         + "4) COMEDIA\n" + "5) DOCUMENTALES\n" + "6) DRAMA\n" + "7) FANTASIA\n" + "8) Músical");
-                    
-                        int tipoGenero = reader.nextInt();
-                        if (tipoGenero == 1){
-                            nuevaPelicula = new Pelicula(GeneroPelícula.Accion, titulo);
+                    System.out.println("1) Registrar Película \n" + "2)Registrar Videojuego");
+                    String opcionSubmenu = reader.nextLine();
+                        switch(opcion){
+                            case "1":
+                                reader = new Scanner(System.in);
+                                String titulo = MiUtils.leerTextoPantalla("Introduce el titulo de la película:");
+                                Genero_Peliculas generoP = MiUtils.menuGeneroPeliculas();
+                                Pelicula p = new Pelicula(titulo, generoP);
+                                videoClub.registrarPelicula(p);
+                                pelicula = p;
+                                System.out.println(p.toString);
+                                break;
+                            case "2":
+                                System.out.println("Registrar Videojuego");
+                                String titulo2 = MiUtils.leerTextoPantalla("Introduce el titulo de la pelicula");
+                                Genero_Videojuegos generoV = MiUtils.menuGeneroVideojuegos();
+                                Videojuego Videojuego1 = new Videojuego(titulo2, generoV);
+                                videoClub.registrarVideojuego(Videojuego);
+                                Videojuego = Videojuego1;
+                                System.out.println(Videojuego1.toString());
+                                break;
+                            }
                         }
-                        if (tipoGenero == 2){
-                            nuevaPelicula = new Pelicula(GeneroPelícula.Aventura, titulo);
-                        }
-                        if (tipoGenero == 3){
-                            nuevaPelicula = new Pelicula(GeneroPelícula.Ciencia_ficcion, titulo);
-                        }
-                        if (tipoGenero == 4){
-                            nuevaPelicula = new Pelicula(GeneroPelícula.Comedia, titulo);
-                        }
-                        if (tipoGenero == 5){
-                            nuevaPelicula = new Pelicula(GeneroPelícula.Documentales, titulo);
-                        }
-                        if (tipoGenero == 6){
-                            nuevaPelicula = new Pelicula(GeneroPelícula.Drama, titulo);
-                        }
-                        if (tipoGenero == 7){
-                            nuevaPelicula = new Pelicula(GeneroPelícula.Fantasia, titulo);
-                        }
-                        if (tipoGenero == 8){
-                            nuevaPelicula = new Pelicula(GeneroPelícula.Musical, titulo);
-                        }
-                        else if(tipoGenero > 8 && tipoGenero < 1 ){
-                            System.out.println("Introduce una opcion correcta");
-                        }
-                    }
-                    if (nuevaPelicula != null) {
-                        System.out.println("Se ha registrado la Pelicula");
-                        System.out.println(nuevaPelicula.mostrarInfoPelicula());
-                        videoClub.nuevaPelicula(nuevaPelicula);
-                    }
-                }else{
-                    System.out.println("Registra un VideoClub antes de añadir una película.");
-                }
                 break;
             case "3" : 
                 if (videoClub != null) {
@@ -83,111 +66,65 @@ public class GestionVideoDaw {
                     LocalDate hoy = LocalDate.now();
                     int n = hoy.getYear() - fechaNacimiento.getYear();
                     if (n > 18) {
-                        
+                        try{                         
                         nuevoCliente = new Cliente(dni, nombre, direccionUsuario, fechaNacimiento);
+                        videoClub.registrarCliente(nuevoCliente);
+                        System.out.println(nuevoCliente.toString());
+                        } catch (ClienteExistenteException e) {
+                            System.out.println(e.getMessage());
+                        }
+                    } else{
+                            System.out.println("No cumple la mayoria de edad.");
+                        } 
+                    }else {
+                        System.out.println("Crea un Videoclub.");
+                    }
+                    break;
                         
-                        if (videoClub.registrarCliente(nuevoCliente) == true) {
-                            System.out.println("Cliente registrado.");
-                        }
-                        else{
-                            System.out.println("El cliente ya existe.");
-                        }
-                        }
-                        else if (n == 18){
-                            int m = hoy.getMonthValue() - fechaNacimiento.getMonthValue();
-                            if(m > 0){
-                                nuevoCliente = new Cliente(dni, nombre, direccionUsuario, fechaNacimiento);
-                                if (videoClub.registrarCliente(nuevoCliente) == true) {
-                                    System.out.println("Cliente registrado.");
-                                }
-                                else{
-                                    System.out.println("El cliente ya existe.");
-                                }
-                            } else{
-                                System.out.println("El cliente no cumple la mayoria de edad por los meses.");
-                            }
-                        }else{
-                            System.out.println("El cliente es menor de edad.");
-                        }                
-                }else {
-                    System.out.println("Tienes que crear un videoClub primero.");
-                }
-                break;
             case "4" :
                 reader = new Scanner(System.in);
-                 if(videoClub != null && videoClub.getnPeliculasRegistradas() > 0 &&nuevaPelicula != null && nuevoCliente != null){
+                 if(videoClub != null){
 
                     System.out.println("Quien va a alquilar la pelicula");
                     System.out.println(videoClub.mostrarClientes());
-                    int cliente = reader.nextInt();
+                    int cliente1 = reader.nextInt();
 
-                    System.out.println("¿Que pelicula quieres alquilar?");
-                    System.out.println(videoClub.mostrarNoAlquiladas());
-                    int pelicula = reader.nextInt();
-
-                    if(videoClub.posiciondelapeliculaArray(pelicula).getIsAlquilada() == false){
-
-                        videoClub.alquilarPelicula(cliente, pelicula);
-                        videoClub.clientesregistradosArray(cliente).añadirPelicula(videoClub.posiciondelapeliculaArray(pelicula));
-                        System.out.println("Se ha alquilado con exito.");
-                        
-                    } else if (videoClub.posiciondelapeliculaArray(pelicula).getIsAlquilada() == true){
-                        System.out.println("La pelicula seleccionada no esta disponible");
-                    }
-                }else {
-                    System.out.println("Para alquilar la pelicula tiene que haber peliculas en el videoclub.");
-                    }
+                    System.out.println(videoClub.mostrarArticulosNoAlquilados(videoClub));
+                    int vd = reader.nextInt();
+                    videoClub.alquilarArticulo(vd, cliente);
+                    System.out.println(cliente.mostrarArticulosAlquilados());
+                 }
                     break;
             case "5" :
-                if (videoClub != null && videoClub.getnClientesRegistrados() > 0 && nuevaPelicula != null && nuevoCliente != null) {
-                    
+                if (videoClub != null ) {
+                    reader = new Scanner(System.in);
                     System.out.println("Elige el cliete que va a devolver la pelicula.");
                     System.out.println(videoClub.mostrarClientes());
                     int clientequeladevuelve = reader.nextInt();
 
-                    if(videoClub.clientesregistradosArray(clientequeladevuelve).getNAlquiladas() > 0){
-                    System.out.println("Selecciona la pelicula: ");
-                    System.out.println(videoClub.mostrarPeliculas());
-                    int codigoPelicula = reader.nextInt();
-                    
-                    videoClub.devolverPelicula(clientequeladevuelve, codigoPelicula);
-                    videoClub.clientesregistradosArray(codigoPelicula).eliminarPelicula(videoClub.posiciondelapeliculaArray(codigoPelicula)); 
-
-                    System.out.println("Movimientos");
-                    videoClub.clientesregistradosArray(codigoPelicula).mostrarPeliculas();
-                    }else{
-                        System.out.println("No hay peliculas alquiladas.");
-                    }
-                }else{
-                    System.out.println("No hay peliculas registradas en el videoclub");
+                    System.out.println(cliente.mostrarArticulosAlquilados());
+                    int vd = reader.nextInt();
+                    videoClub.devolverArticulo(clientequeladevuelve, vd);
+                    System.out.println(videoClub.mostrarArticulosNoAlquilados(videoClub));
                 }
                 break;
             case "6" : 
                 reader = new Scanner(System.in);
                 if (videoClub != null && videoClub.getnClientesRegistrados() > 0) {
+                    System.out.println("Selecciona el cliente que vas a dar de baja.");
                     System.out.println(videoClub.mostrarClientes());
-                    System.out.println("Introduce el numero que sale alante del cliente a dar de baja");
-                    int numCliente = reader.nextInt();
-
-                    videoClub.darBajaCliente(nuevoCliente, numCliente);
-
-                    System.out.println("Cliente eliminado.");
-                }else{
-                    System.out.println("No hay ningun cliente registrado");
+                    int codigoSocio = reader.nextInt();
+                    videoClub.darBajaCliente(codigoSocio);
                 }
                 break;
             case "7" :
                 reader = new Scanner(System.in);
 
                 if (videoClub != null && videoClub.getnPeliculasRegistradas() > 0) {
-                    System.out.println("Introduce cual es la posicion de la pelicula que quieres dar de baja");
-                    System.out.println(videoClub.mostrarPeliculas());
-                    int codigoPelicula = reader.nextInt();
-
-                    videoClub.darBajaPelicula(nuevaPelicula, codigoPelicula);
-                    System.out.println("Pelicula eliminada con exito.");
-                }else {
-                    System.out.println("No hay peliculsa registradas");
+                    System.out.println("Introduce el articulo que quieres dar de baja.");
+                    System.out.println(videoClub.mostrarArticulosNoAlquilados(videoClub));
+                    int c = reader.nextInt();
+                    videoClub.darBajaArticulo(c);
                 }
                 break;
             case "8" :
