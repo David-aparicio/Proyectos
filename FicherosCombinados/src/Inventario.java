@@ -10,7 +10,6 @@ public class Inventario{
 
 
         Scanner sc = new Scanner(System.in);
-        String opcion;
         try(FileReader file = new FileReader("Recursos\\productos.csv");BufferedReader reader = new BufferedReader(file);){
             String linea = reader.readLine();
             
@@ -50,6 +49,8 @@ public class Inventario{
         }catch (IOException e){
             System.out.println(e.getMessage());
         }
+        String opcion;
+        
         do {
             System.out.println("1. Mostrar Productos en el Inventario");
             System.out.println("2. Eliminar Producto por referencia - Ejemplo(ref-001)");
