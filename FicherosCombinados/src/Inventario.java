@@ -28,7 +28,7 @@ public class Inventario{
         boolean eof = false;
         try(FileInputStream fichero = new FileInputStream("Recursos\\almacen.dat"); DataInputStream reader = new DataInputStream(fichero)){
 
-            if(!eof){
+            while(!eof) {
                 int cantidad = reader.readInt();
                 double precio = reader.readDouble();
                 int descuento = reader.readInt();
@@ -40,14 +40,11 @@ public class Inventario{
                 productos.get(pos).setDescuento(descuento);
                 productos.get(pos).setIva(iva);
                 productos.get(pos).setAplicarDto(aplicarDto);
-                
-            }else{
-                eof = true;
+
             }
-        }catch(EOFException e) {
-            eof = true;
         }catch (IOException e){
             System.out.println(e.getMessage());
+            eof = true;
         }
         String opcion;
         
@@ -68,7 +65,13 @@ public class Inventario{
                 case "2":
                     System.out.print("Introduce la referencia del producto para eliminarlo: ");
                     String referencia = sc.nextLine();
-
+                    Producto producto = null;
+                    for (Producto p : productos) {
+                        if (p.getReferencia().equals(referencia)) {
+                            producto = p;
+                        }
+                    }
+                    productos.remove(producto);
                     break;
                 case "3":
                 try (BufferedWriter writer = new BufferedWriter(new FileWriter("./resource/productos.csv"))) {
@@ -97,13 +100,11 @@ public class Inventario{
                 }
 
                     break;
-                
-                
                 default:
-                    System.out.println("Opcion no valida");
+                    System.out.println("Opción no valida");
             
         }
-    }while (opcion != "3");
+    }while (!opcion.equals("3"));
         
     }
 }
