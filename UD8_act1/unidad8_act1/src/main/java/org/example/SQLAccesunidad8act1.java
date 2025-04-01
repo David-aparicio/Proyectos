@@ -6,6 +6,7 @@ import java.util.List;
 
 public class SQLAccesunidad8act1 {
 
+    //Mostrar Productos
     public List<Inventario> getMostrartodos() {
         List<Inventario> productos = new LinkedList<>();
         //Sentencia SQL
@@ -26,6 +27,7 @@ public class SQLAccesunidad8act1 {
                 boolean AplicarDto = dataSet.getBoolean(10);
 
                 Inventario p1 = new Inventario(Id,Referencia,Nombre,Descripcion,Tipo, Cantidad,Precio,Descuento,IVA,AplicarDto);
+                productos.add(p1);
 
             }
         } catch (Exception e) {
@@ -35,5 +37,8 @@ public class SQLAccesunidad8act1 {
         return productos;
     }
 
+    //Buscar por Referencia
+    public List<Inventario> getBuscarReferencia(String Referencia) {
 
+    }
 }
