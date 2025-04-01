@@ -5,14 +5,14 @@ public class   Inventario {
     private String referencia;
     private String nombre;
     private String descripcion;
-    private Tipos tipo;
+    private int tipo;
     private int cantidad;
     private double precio;
     private int descuento;
     private int iva;
     private boolean aplicarDto;
 
-    public Inventario(int id, String referencia, String nombre, String descripcion, Tipos tipo, int cantidad, double precio, int descuento, int iva, boolean aplicarDto) {
+    public Inventario(int id, String referencia, String nombre, String descripcion, int tipo, int cantidad, double precio, int descuento, int iva, boolean aplicarDto) {
         this.id = id;
         this.referencia = referencia;
         this.nombre = nombre;
@@ -36,7 +36,7 @@ public class   Inventario {
     public String getDescripcion() {
         return descripcion;
     }
-    public Tipos getTipo() {
+    public int getTipo() {
         return tipo;
     }
     public int getCantidad() {
