@@ -22,7 +22,18 @@ public class   Inventario {
         this.precio = precio;
         this.descuento = descuento;
         this.iva = iva;
-        this.aplicarDto = false;
+        this.aplicarDto = aplicarDto;
+    }
+    public Inventario(String referencia, String nombre, String descripcion, int tipo, int cantidad, double precio, int descuento, int iva, boolean aplicarDto) {
+        this.referencia = referencia;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.tipo = tipo;
+        this.cantidad = cantidad;
+        this.precio = precio;
+        this.descuento = descuento;
+        this.iva = iva;
+        this.aplicarDto = aplicarDto;
     }
     public int getId() {
         return id;

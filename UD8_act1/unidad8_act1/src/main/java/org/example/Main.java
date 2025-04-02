@@ -71,29 +71,36 @@ public class Main {
                         if (BuscReferencia.isEmpty()) {
                             System.out.println("Escriba el nombre del producto: ");
                             String nombre2 = scanner.nextLine();
+
                             System.out.println("Escriba el descripcion del producto: ");
                             String descripcion2 = scanner.nextLine();
+
                             System.out.println("Escriba el tipo de producto: ");
                             List<Tipos> tiposList1 = miData.getTiposmostrar();
                             for (Tipos p : tiposList1) {
                                 System.out.println(p);
                             }
                             int tipo2 = scanner.nextInt();
+
                             System.out.println("Escriba la cantidad: ");
                             int cantidad2 = scanner.nextInt();
+
                             System.out.println("Escriba el precio: ");
                             double precio2 = scanner.nextDouble();
+
                             System.out.println("Escriba el descuento: ");
-                            double descuento2 = scanner.nextDouble();
+                            int descuento2 = scanner.nextInt();
+
                             System.out.println("Escriba el IVA: ");
-                            double IVA2 = scanner.nextDouble();
+                            int IVA2 = scanner.nextInt();
+
                             System.out.println("¿Tiene descuento? Pon s o n ");
                             String descuento3 = scanner.nextLine();
                             boolean tieneDescuento = false;
                                 if(descuento3.equalsIgnoreCase("s")){
                                     tieneDescuento = true;
                             }
-
+                            Inventario n2n = new Inventario(referencia2,nombre2,descripcion2,tipo2,cantidad2,precio2,descuento2,IVA2,tieneDescuento);
                         }else {
                             System.out.println("No se permiten referencias repetidas");
                         }

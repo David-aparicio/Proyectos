@@ -1,5 +1,6 @@
 DROP DATABASE IF EXISTS unidad8act1;
 create database unidad8act1;
+create user developer@localhost identified by 'daw12';
 use unidad8act1;
 
 CREATE TABLE Tipos (
