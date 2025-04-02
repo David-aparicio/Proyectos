@@ -9,7 +9,7 @@ CREATE TABLE Tipos (
 
 CREATE TABLE Inventario (
     Id INT PRIMARY KEY AUTO_INCREMENT,
-    Referencia VARCHAR(50) NOT NULL,
+    Referencia VARCHAR(50) NOT NULL unique,
     Nombre VARCHAR(100) NOT NULL,
     Descripcion TEXT,
     Tipo INT NOT NULL,
