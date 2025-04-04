@@ -41,7 +41,7 @@ public class SQLAccesunidad8act1 {
     public List<Inventario> getBuscarReferencia(String referencia) {
         List<Inventario> BuscReferencia = new LinkedList<>();
 
-        String sql = "SELECT * FROM Inventario WHERE Referencia = ?";
+        String sql = "SELECT * FROM Inventario WHERE Referencia = LOWER(?)";
 
         try (Connection connection = SQLDataBaseManager.getConnection(); PreparedStatement statement = connection.prepareStatement(sql);){
             statement.setString(1, referencia);
@@ -150,7 +150,7 @@ public class SQLAccesunidad8act1 {
         //AÑADIRR
     public int insertarProducto(Inventario producto1) {
         int response = -1;
-        String sqlStatement = "INSERT INTO Inventario VALUES (Referencia, Nombre, Descripcion, Tipo, Cantidad, Precio, Descuento, IVA, AplicarDto) "+"(?,?,?,?,?,?,?,?,?)";
+        String sqlStatement = "INSERT INTO Inventario (Referencia, Nombre, Descripcion, Tipo, Cantidad, Precio, Descuento, IVA, AplicarDto) "+"VALUES(?,?,?,?,?,?,?,?,?)";
         try (Connection connection = SQLDataBaseManager.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlStatement);){
 
             statement.setNString(1, producto1.getReferencia());
@@ -171,5 +171,41 @@ public class SQLAccesunidad8act1 {
 
         return response;
     }
+    //ELIMINAR POR REFERENCIA
+
+    public int eliminarProducto(String referencia) {
+        int response = -1;
+
+        String sql = "DELETE FROM Inventario WHERE Referencia = ?";
+        try (Connection connection = SQLDataBaseManager.getConnection(); PreparedStatement statement1 = connection.prepareStatement(sql); ){
+
+            statement1.setNString(1, referencia);
+
+            response = statement1.executeUpdate();
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return response;
+    }
+    //UPDATE EPICOOO
+
+    public int actualizarProducto(Inventario producto1) {
+        int response = -1;
+        String sql = "UPDATE Inventario set Descripcion = ?, set Cantidad = ?, set Precio = ?, set Descuento = ?, set isAplicarDto = ?";
+        try(Connection connection = SQLDataBaseManager.getConnection(); PreparedStatement statement3 = connection.prepareStatement(sql);){
+
+            statement3.setNString(1, producto1.getDescripcion());
+            statement3.setInt(2,producto1.getCantidad());
+            statement3.setDouble(3,producto1.getPrecio());
+            statement3.setDouble(4,producto1.getDescuento());
+            statement3.setBoolean(5,producto1.isAplicarDto());
+
+            statement3.executeUpdate();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return response;
+    }
 }
+
 

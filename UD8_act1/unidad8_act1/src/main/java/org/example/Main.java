@@ -2,6 +2,7 @@ package org.example;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,6 +10,7 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         int opcion;
+        Pattern pattern = Pattern.compile("[A-Z]{3}[0-9]{3}");
 
         do {
             System.out.println("\n--- Menú de Inventario ---");
@@ -65,14 +67,19 @@ public class Main {
                     }
                     break;
                 case 5:
-                    System.out.println("Escriba la referencia del producto: ");
+                    List<Inventario> todosProductos8 = miData.getMostrartodos();
+                    for (Inventario p : todosProductos8) {
+                        System.out.println("Nombre: " + p.getNombre() + " | Referencia: " + p.getReferencia());
+                    }
+                    System.out.println("Escriba la referencia del producto (No se permiten referencias repetidas): ");
                     String referencia2 = scanner.nextLine();
+
                         List<Inventario>BuscReferencia = miData.getBuscarReferencia(referencia2);
                         if (BuscReferencia.isEmpty()) {
                             System.out.println("Escriba el nombre del producto: ");
                             String nombre2 = scanner.nextLine();
 
-                            System.out.println("Escriba el descripcion del producto: ");
+                            System.out.println("Escriba la descripcion del producto: ");
                             String descripcion2 = scanner.nextLine();
 
                             System.out.println("Escriba el tipo de producto: ");
@@ -92,24 +99,61 @@ public class Main {
                             int descuento2 = scanner.nextInt();
 
                             System.out.println("Escriba el IVA: ");
-                            int IVA2 = scanner.nextInt();
+                            int iVA2 = scanner.nextInt();
 
                             System.out.println("¿Tiene descuento? Pon s o n ");
+                            scanner = new Scanner(System.in);
                             String descuento3 = scanner.nextLine();
                             boolean tieneDescuento = false;
                                 if(descuento3.equalsIgnoreCase("s")){
                                     tieneDescuento = true;
                             }
-                            Inventario n2n = new Inventario(referencia2,nombre2,descripcion2,tipo2,cantidad2,precio2,descuento2,IVA2,tieneDescuento);
+                            Inventario n2n = new Inventario(referencia2,nombre2,descripcion2,tipo2,cantidad2,precio2,descuento2,iVA2,tieneDescuento);
+                                int response = miData.insertarProducto(n2n);
+                                System.out.println("Se han insertado" +response + "elementos");
                         }else {
                             System.out.println("No se permiten referencias repetidas");
                         }
                     break;
                 case 6:
-                    System.out.println("Eliminando producto por referencia...");
+                    System.out.println("Productos disponibles:");
+                    List<Inventario> todosProductos = miData.getMostrartodos();
+                    for (Inventario p : todosProductos) {
+                        System.out.println("Nombre: " + p.getNombre() + " / Referencia: " + p.getReferencia());
+                    }
+
+                    System.out.println("Escriba la referencia del producto que desea eliminar: ");
+                    String referencia3 = scanner.nextLine();
+                    miData.eliminarProducto(referencia3);
+                    System.out.println("Producto eliminado.");
                     break;
+
                 case 7:
-                    System.out.println("Actualizando producto...");
+                    System.out.println("Vamos a actualizar un producto");
+                    List<Inventario> todosProductos5 = miData.getMostrartodos();
+                    for (Inventario p : todosProductos5) {
+                        System.out.println("Nombre: " + p.getNombre() + " / Referencia: " + p.getReferencia());
+                    }
+                    System.out.println("Escriba la referencia del producto que quieras actualizar: ");
+                    String referencia4 = scanner.nextLine();
+                    List<Inventario> invUpdate = miData.getBuscarReferencia(referencia4);
+
+                    Inventario productoActualizado = invUpdate.get(1);
+                    System.out.println("Escriba la nueva descripcion del producto: ");
+                    String nuevaDescripcion = scanner.nextLine();
+                    System.out.println("Escriba la nueva cantidad del producto: ");
+                    int cantidad2 = scanner.nextInt();
+                    System.out.println("Escriba el nuevo precio del producto: ");
+                    double precio2 = scanner.nextDouble();
+                    System.out.println("Escriba el nuevo descuento del producto: ");
+                    int descuento2 = scanner.nextInt();
+                    System.out.println("Escriba si aplica descuento del producto: Pon s o n");
+                    String descuento4 = scanner.nextLine();
+                    boolean tieneDescuento2 = false;
+                    if(descuento4.equalsIgnoreCase("s")){
+                        tieneDescuento2 = true;
+                    }
+                    
                     break;
                 case 8:
                     System.out.println("Insertando un nuevo tipo de producto...");

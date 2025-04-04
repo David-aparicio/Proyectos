@@ -66,6 +66,7 @@ public class   Inventario {
         return aplicarDto;
     }
 
+
     @Override
     public String toString() {
         return "Inventario{" +
