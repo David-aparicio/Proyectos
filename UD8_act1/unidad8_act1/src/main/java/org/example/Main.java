@@ -166,7 +166,13 @@ public class Main {
 
                     break;
                 case 8:
-                    System.out.println("Insertando un nuevo tipo de producto...");
+                    System.out.println("Introduce el id del Tipo que quieres añadir:");
+                    int tipo3 = scanner.nextInt();
+                    System.out.println("Introduce el nombre del tipo: ");
+                    scanner = new Scanner(System.in);
+                    String tipo4 = scanner.nextLine();
+                    Tipos newTipo = new Tipos(tipo3,tipo4);
+                    miData.añadirTipoProducto(newTipo);
                     break;
                 case 9:
                     System.out.println("Saliendo del sistema...");

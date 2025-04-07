@@ -207,6 +207,23 @@ public class SQLAccesunidad8act1 {
         }
         return response;
     }
+
+    //INSERTAR TIPO
+
+    public int añadirTipoProducto(Tipos tipazo1) {
+        int response = -1;
+        String sql = "INSERT INTO Tipos VALUES(?,?)";
+        try (Connection connection = SQLDataBaseManager.getConnection(); PreparedStatement statement = connection.prepareStatement(sql);) {
+
+            statement.setInt(1, tipazo1.getId());
+            statement.setNString(2,tipazo1.getNombre());
+
+            statement.executeUpdate();
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        return response;
+    }
 }
 
 
