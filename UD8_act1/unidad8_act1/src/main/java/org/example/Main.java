@@ -138,7 +138,7 @@ public class Main {
                     String referencia4 = scanner.nextLine();
                     List<Inventario> invUpdate = miData.getBuscarReferencia(referencia4);
 
-                    Inventario productoActualizado = invUpdate.get(1);
+                    Inventario productoActualizado = invUpdate.get(0);
                     System.out.println("Escriba la nueva descripcion del producto: ");
                     String nuevaDescripcion = scanner.nextLine();
                     System.out.println("Escriba la nueva cantidad del producto: ");
@@ -148,12 +148,22 @@ public class Main {
                     System.out.println("Escriba el nuevo descuento del producto: ");
                     int descuento2 = scanner.nextInt();
                     System.out.println("Escriba si aplica descuento del producto: Pon s o n");
+                    scanner = new Scanner(System.in);
                     String descuento4 = scanner.nextLine();
                     boolean tieneDescuento2 = false;
                     if(descuento4.equalsIgnoreCase("s")){
+
                         tieneDescuento2 = true;
+                    }else {
+                        tieneDescuento2 = false;
                     }
-                    
+                    productoActualizado.setDescripcion(nuevaDescripcion);
+                    productoActualizado.setCantidad(cantidad2);
+                    productoActualizado.setPrecio(precio2);
+                    productoActualizado.setDescuento(descuento2);
+                    productoActualizado.setAplicarDto(tieneDescuento2);
+                    miData.actualizarProducto(productoActualizado);
+
                     break;
                 case 8:
                     System.out.println("Insertando un nuevo tipo de producto...");

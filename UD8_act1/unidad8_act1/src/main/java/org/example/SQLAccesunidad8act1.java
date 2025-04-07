@@ -187,18 +187,19 @@ public class SQLAccesunidad8act1 {
         }
         return response;
     }
-    //UPDATE EPICOOO
+    //UPDATE
 
-    public int actualizarProducto(Inventario producto1) {
+    public int actualizarProducto(Inventario producto3) {
         int response = -1;
-        String sql = "UPDATE Inventario set Descripcion = ?, set Cantidad = ?, set Precio = ?, set Descuento = ?, set isAplicarDto = ?";
+        String sql = "UPDATE Inventario set Descripcion = ?, Cantidad = ?, Precio = ?, Descuento = ?, AplicarDto = ? WHERE Referencia = ?";
         try(Connection connection = SQLDataBaseManager.getConnection(); PreparedStatement statement3 = connection.prepareStatement(sql);){
 
-            statement3.setNString(1, producto1.getDescripcion());
-            statement3.setInt(2,producto1.getCantidad());
-            statement3.setDouble(3,producto1.getPrecio());
-            statement3.setDouble(4,producto1.getDescuento());
-            statement3.setBoolean(5,producto1.isAplicarDto());
+            statement3.setNString(1, producto3.getDescripcion());
+            statement3.setInt(2,producto3.getCantidad());
+            statement3.setDouble(3,producto3.getPrecio());
+            statement3.setDouble(4,producto3.getDescuento());
+            statement3.setBoolean(5,producto3.isAplicarDto());
+            statement3.setNString(6, producto3.getReferencia());
 
             statement3.executeUpdate();
         }catch (Exception e){
