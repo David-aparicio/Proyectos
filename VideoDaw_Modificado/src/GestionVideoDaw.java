@@ -25,7 +25,7 @@ public class GestionVideoDaw {
                 String direccion = MiUtils.leerTextoPantalla("Añade la direccion");
 
                 videoClub = new VideoDaw(cif, direccion);
-                System.out.println(videoClub.mostrarInfoVideoclub());
+                System.out.println(videoClub.toString());
                 break;
             case  "2":
                 if(videoClub != null){

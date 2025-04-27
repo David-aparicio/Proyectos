@@ -56,5 +56,6 @@ public class Cliente extends Persona{
         articulosAlquilados.remove(articulo);
     }
 
-    
+
+
 }

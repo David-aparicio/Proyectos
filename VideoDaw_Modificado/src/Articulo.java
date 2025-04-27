@@ -2,18 +2,18 @@ import java.time.LocalDate;
 
 public class Articulo {
     protected String titulo;
-    protected int cod; 
+    protected int cod;
     protected LocalDate fechaRegistro;
     protected LocalDate fechaBaja;
-    protected static int codigo = 1;  
+    protected static int codigo = 1;
 
-    
-    public Articulo(String titulo) {
+
+    public Articulo(String titulo, String cod) {
         this.cod = codigo;
         codigo++;
         this.titulo = titulo;
         this.fechaRegistro = LocalDate.now();
-        this.fechaBaja = null; 
+        this.fechaBaja = null;
     }
 
     public int getCod() {

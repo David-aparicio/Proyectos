@@ -100,12 +100,12 @@ public class VideoDaw {
         Articulo articulo = null;
         Cliente cliente = null;
         for (Articulo a : articulosRegistrados) {
-            if(a.getCod()==codSocio){
+            if(a.getCod()==cod){
                 articulo = a;
             }
         }
         for (Cliente c : clientesRegistrados) {
-            if(c.getCodigoSocio()==codSocio){
+            if(c.getCodigoSocio()==cod){
                 cliente = c;
             }
         }
@@ -194,6 +194,7 @@ public class VideoDaw {
                 }
                 return "No se ha encontrado el articulo";
             }
+
 }
 
 
