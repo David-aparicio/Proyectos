@@ -1,3 +1,5 @@
+package org.example;
+
 public class GeneroPelícula {
     private int id;
     private String nombre;

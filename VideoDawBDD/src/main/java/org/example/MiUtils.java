@@ -21,49 +21,6 @@ public class MiUtils {
         System.out.println(mensaje);
     }
 
-    public static LocalDate fechaconformato(){
-    Scanner entrada = new Scanner(System.in);
-
-    DateTimeFormatter formatter =  DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    MiUtils.imprimir("\nEscribe la fecha de nacimiento en formato DD/MM/AAAA");
-    String dateString = entrada.nextLine();
-
-    LocalDate fechaLocalDate = LocalDate.parse(dateString, formatter);
-    return fechaLocalDate;
-    }
-    public static Genero_Peliculas menuGeneroPeliculas(){
-        Scanner reader = new Scanner(System.in);
-
-        Genero_Peliculas generoP =  null;
-        System.out.println("Seleccione el genero de la pelicula:");
-        for (int i = 0; i < Genero_Peliculas.values().length; i++) {
-            System.out.println((i+1) + ". " + Genero_Peliculas.values()[i]);
-        }
-        System.out.println("Introduce el numero relacionado con el nombre del genero");
-        int opcion = reader.nextInt();
-        if (opcion >= 1 && opcion <= Genero_Peliculas.values().length){
-            generoP = Genero_Peliculas.values()[opcion - 1];
-            System.out.println("El genero seleccionado es: " + generoP);
-        }
-        return generoP;
-    }
-
-    public static Genero_Videojuegos menuGeneroVideojuegos(){
-        Scanner reader = new Scanner(System.in);
-
-        Genero_Videojuegos generoV =  null;
-        System.out.println("Seleccione el genero de la pelicula:");
-        for (int i = 0; i < Genero_Videojuegos.values().length; i++) {
-            System.out.println((i+1) + ". " + Genero_Videojuegos.values()[i]);
-        }
-        System.out.println("Introduce el numero relacionado con el nombre del genero");
-        int opcion = reader.nextInt();
-        if (opcion >= 1 && opcion <= Genero_Videojuegos.values().length){
-            generoV = Genero_Videojuegos.values()[opcion - 1];
-            System.out.println("El genero seleccionado es: " + generoV);
-        }
-        return generoV;
-    }
 
 
     public static String leerTextoPantalla(String mensaje){
