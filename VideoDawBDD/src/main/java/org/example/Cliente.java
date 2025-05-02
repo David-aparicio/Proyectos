@@ -9,15 +9,15 @@ public class Cliente {
     private String dni;
     private String nombre;
     private String direccion;
-    private String fechaNacimiento;
-    private LocalDateTime fechaCreacionUsuario;
+    private long fechaNacimiento; // Usamos epoch en lugar de LocalDate
+    private long fechaCreacionUsuario;
 
-    public Cliente(String dni, String nombre, String direccion, String fechaNacimiento) {
+    public Cliente(String dni, String nombre, String direccion, long fechaNacimiento) {
         this.dni = dni;
         this.nombre = nombre;
         this.direccion = direccion;
         this.fechaNacimiento = fechaNacimiento;
-        this.fechaCreacionUsuario = LocalDateTime.now(); // este campo es automático en la BD, puede omitirse al insertar
+        this.fechaCreacionUsuario = System.currentTimeMillis() / 1000;
     }
 
 
@@ -37,22 +37,15 @@ public class Cliente {
         return direccion;
     }
 
-    public Date getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public LocalDateTime getFechaCreacionUsuario() {
-        return fechaCreacionUsuario;
-    }
+    public long getFechaNacimiento() { return fechaNacimiento; }
+    public long getFechaCreacionUsuario() { return fechaCreacionUsuario; }
 
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setFechaCreacionUsuario(LocalDateTime fechaCreacionUsuario) {
-        this.fechaCreacionUsuario = fechaCreacionUsuario;
-    }
+
 
     @Override
     public String toString() {
