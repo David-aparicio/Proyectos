@@ -37,7 +37,7 @@ public class SQLAccesVideoDaw {
 
     public List<GeneroPelícula> getMostrarGP(){
         List<GeneroPelícula> generos = new LinkedList<>();
-        String sqlStatement = "SELECT * FROM Pelicula";
+        String sqlStatement = "SELECT * FROM GeneroPelicula";
         try (Connection connection = SQLDataBaseManager.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlStatement);
              ResultSet dataSet = statement.executeQuery(sqlStatement);){
             while (dataSet.next()){
@@ -70,7 +70,7 @@ public class SQLAccesVideoDaw {
 
     public List<GeneroVideojuego> getMostrarGV(){
         List<GeneroVideojuego> generos = new LinkedList<>();
-        String sqlStatement = "SELECT * FROM Videojuego";
+        String sqlStatement = "SELECT * FROM GeneroVideojuego";
         try (Connection connection = SQLDataBaseManager.getConnection(); PreparedStatement statement = connection.prepareStatement(sqlStatement);
              ResultSet dataSet = statement.executeQuery(sqlStatement);){
             while (dataSet.next()){

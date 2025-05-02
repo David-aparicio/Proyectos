@@ -39,8 +39,9 @@ public class GestionVideoDaw {
                     case "1":
                         reader = new Scanner(System.in);
                         List<GeneroPelícula> generosP = mySQL.getMostrarGP();
-                        for (GeneroPelícula genero : generosP) {
-                            System.out.println(genero);
+
+                        for (int i = 0; i < generosP.size(); i++) {
+                            System.out.println(i + 1 + ") " + generosP.get(i));
                         }
                         System.out.println("Ingrese el número del genero de la pelicula que vas a ingresar:");
                         int numero = reader.nextInt();
