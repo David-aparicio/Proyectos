@@ -75,7 +75,7 @@ public class GestionVideoDaw {
                 String fechaNacimientoC = reader.nextLine();
 
                 Cliente nuevoCLiente = new Cliente(dni,nombreC,direccionC,fechaNacimientoC);
-                
+
                 break;
             case "4" :
 
